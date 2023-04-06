@@ -27,7 +27,7 @@ cloudflare:
 image:
   repository: cloudflare/cloudflared
   pullPolicy: IfNotPresent
-  tag: "2023.2.2"
+  tag: "latest"
 
 replicaCount: 2
 
