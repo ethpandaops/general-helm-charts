@@ -23,11 +23,9 @@ the latest versions of the packages.  You can then run the following command to 
 helm search repo ethpandaops-general-helm-charts
 ```
 
-**TODO** install/uninstall example once we have a chart published
-
 ## List of charts
 
-**TODO**
+- [`cloudflare-tunnel`](charts/cloudflare-tunnel)
 
 ## Development
 
