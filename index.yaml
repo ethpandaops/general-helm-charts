@@ -1,0 +1,16 @@
+apiVersion: v1
+entries:
+  raw-configmap:
+  - apiVersion: v2
+    created: "2023-04-06T14:28:55.173004137Z"
+    description: Just a plain raw ConfigMap
+    digest: 394f371b490c2aa9df73b66a887cb7990cfedd96cbd5cb862068faf99e13b793
+    maintainers:
+    - email: rafael@skyle.net
+      name: skylenet
+    name: raw-configmap
+    type: application
+    urls:
+    - https://github.com/ethpandaops/general-helm-charts/releases/download/raw-configmap-0.1.0/raw-configmap-0.1.0.tgz
+    version: 0.1.0
+generated: "2023-04-06T14:28:55.173008537Z"
