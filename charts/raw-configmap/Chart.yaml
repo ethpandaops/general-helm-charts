@@ -1,0 +1,8 @@
+apiVersion: v2
+name: raw-configmap
+description: Just a plain raw ConfigMap
+type: application
+version: 0.1.0
+maintainers:
+  - name: skylenet
+    email: rafael@skyle.net
