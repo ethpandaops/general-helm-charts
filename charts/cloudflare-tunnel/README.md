@@ -1,6 +1,6 @@
 # cloudflare-tunnel
 
-![Version: 0.1.2](https://img.shields.io/badge/Version-0.1.2-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square)
+![Version: 0.1.3](https://img.shields.io/badge/Version-0.1.3-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square)
 
 Creation of a cloudflared deployment - a reverse tunnel for an environment
 
@@ -9,6 +9,7 @@ Creation of a cloudflared deployment - a reverse tunnel for an environment
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
 | affinity | object | `{}` |  |
+| args | list | `[]` |  |
 | cloudflare.account | string | `""` |  |
 | cloudflare.enableWarp | bool | `false` |  |
 | cloudflare.ingress | list | `[]` |  |
