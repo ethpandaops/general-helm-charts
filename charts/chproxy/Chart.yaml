@@ -1,0 +1,9 @@
+apiVersion: v2
+name: chproxy
+description: HTTP proxy and load balancer for ClickHouse
+home: https://www.chproxy.org
+type: application
+version: 0.0.1
+maintainers:
+  - name: savid
+    email: andrew.davis@ethereum.org
