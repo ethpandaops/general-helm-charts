@@ -1,5 +1,19 @@
 apiVersion: v1
 entries:
+  chproxy:
+  - apiVersion: v2
+    created: "2024-10-04T02:41:52.463128755Z"
+    description: HTTP proxy and load balancer for ClickHouse
+    digest: fa5f041a8e9b4707d84823271fc1b0c7f6f8c40243dba7d0bab5b7356e8176c1
+    home: https://www.chproxy.org
+    maintainers:
+    - email: andrew.davis@ethereum.org
+      name: savid
+    name: chproxy
+    type: application
+    urls:
+    - https://github.com/ethpandaops/general-helm-charts/releases/download/chproxy-0.0.1/chproxy-0.0.1.tgz
+    version: 0.0.1
   cloudflare-tunnel:
   - apiVersion: v2
     created: "2023-11-23T01:50:22.576136755Z"
@@ -53,4 +67,4 @@ entries:
     urls:
     - https://github.com/ethpandaops/general-helm-charts/releases/download/raw-configmap-0.1.0/raw-configmap-0.1.0.tgz
     version: 0.1.0
-generated: "2023-11-23T01:50:22.576149399Z"
+generated: "2024-10-04T02:41:52.463139656Z"
