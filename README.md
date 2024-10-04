@@ -26,6 +26,8 @@ helm search repo ethpandaops-general-helm-charts
 ## List of charts
 
 - [`cloudflare-tunnel`](charts/cloudflare-tunnel)
+- [`chproxy`](charts/chproxy)
+- [`raw-configmap`](charts/raw-configmap)
 
 ## Development
 
