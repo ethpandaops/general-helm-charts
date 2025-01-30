@@ -7,7 +7,7 @@ imagePullSecrets: []
 nameOverride: ""
 fullnameOverride: ""
 
-schedule: "*/2 * * * *"  # Run at 7am UTC daily
+schedule: "0 7 * * *"  # Run at 7am UTC daily
 
 config:
   network: ""  # required
