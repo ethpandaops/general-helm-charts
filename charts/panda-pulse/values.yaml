@@ -1,0 +1,44 @@
+image:
+  repository: ethpandaops/panda-pulse
+  tag: latest
+  pullPolicy: IfNotPresent
+
+imagePullSecrets: []
+nameOverride: ""
+fullnameOverride: ""
+
+schedule: "*/2 * * * *"  # Run at 7am UTC daily
+
+config:
+  network: ""  # required
+  discordChannel: ""  # required
+  ethereumCl: ""  # optional
+  ethereumEl: ""  # optional
+  grafanaBaseUrl: ""  # optional
+  prometheusDatasourceId: ""  # optional
+
+secrets:
+  grafanaServiceToken: ""  # required
+  discordBotToken: ""  # required
+  openrouterApiKey: ""  # optional
+
+resources:
+  limits:
+    cpu: 1000m
+    memory: 1Gi
+  requests:
+    cpu: 100m
+    memory: 128Mi
+
+serviceAccount:
+  create: true
+  annotations: {}
+  name: ""
+
+podAnnotations: {}
+podSecurityContext: {}
+securityContext: {}
+
+nodeSelector: {}
+tolerations: []
+affinity: {} 
