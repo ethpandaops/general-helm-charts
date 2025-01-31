@@ -34,7 +34,7 @@ A Helm chart for Panda Pulse - Ethereum network monitoring and reporting tool
 | resources.limits.memory | string | `"1Gi"` |  |
 | resources.requests.cpu | string | `"100m"` |  |
 | resources.requests.memory | string | `"128Mi"` |  |
-| schedule | string | `"*/2 * * * *"` |  |
+| schedule | string | `"0 7 * * *"` |  |
 | secrets.discordBotToken | string | `""` |  |
 | secrets.grafanaServiceToken | string | `""` |  |
 | secrets.openrouterApiKey | string | `""` |  |
