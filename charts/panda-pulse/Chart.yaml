@@ -3,7 +3,7 @@ name: panda-pulse
 description: A Helm chart for Panda Pulse - Ethereum network monitoring and reporting tool
 type: application
 version: 0.0.1
-appVersion: "latest" 
+appVersion: "latest"
 maintainers:
   - name: matty
     email: matt.evans@ethereum.org
