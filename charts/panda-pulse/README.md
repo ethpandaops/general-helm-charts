@@ -15,11 +15,11 @@ A Helm chart for Panda Pulse - Ethereum network monitoring and reporting tool
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
 | affinity | object | `{}` |  |
-| config.discordChannel | string | `""` |  |
+| config.discordChannel | string | `"YOUR_DISCORD_CHANNEL_ID"` |  |
 | config.ethereumCl | string | `""` |  |
 | config.ethereumEl | string | `""` |  |
 | config.grafanaBaseUrl | string | `""` |  |
-| config.network | string | `""` |  |
+| config.network | string | `"YOUR_PREFERRED_NETWORK"` |  |
 | config.prometheusDatasourceId | string | `""` |  |
 | fullnameOverride | string | `""` |  |
 | image.pullPolicy | string | `"IfNotPresent"` |  |
@@ -35,8 +35,8 @@ A Helm chart for Panda Pulse - Ethereum network monitoring and reporting tool
 | resources.requests.cpu | string | `"100m"` |  |
 | resources.requests.memory | string | `"128Mi"` |  |
 | schedule | string | `"0 7 * * *"` |  |
-| secrets.discordBotToken | string | `""` |  |
-| secrets.grafanaServiceToken | string | `""` |  |
+| secrets.discordBotToken | string | `"YOUR_DISCORD_BOT_TOKEN"` |  |
+| secrets.grafanaServiceToken | string | `"YOUR_GRAFANA_SERVICE_TOKEN"` |  |
 | secrets.openrouterApiKey | string | `""` |  |
 | securityContext | object | `{}` |  |
 | serviceAccount.annotations | object | `{}` |  |

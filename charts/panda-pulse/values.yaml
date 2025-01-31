@@ -10,16 +10,16 @@ fullnameOverride: ""
 schedule: "0 7 * * *"  # Run at 7am UTC daily
 
 config:
-  network: ""  # required
-  discordChannel: ""  # required
+  network: "YOUR_PREFERRED_NETWORK"  # required
+  discordChannel: "YOUR_DISCORD_CHANNEL_ID"  # required
   ethereumCl: ""  # optional
   ethereumEl: ""  # optional
   grafanaBaseUrl: ""  # optional
   prometheusDatasourceId: ""  # optional
 
 secrets:
-  grafanaServiceToken: ""  # required
-  discordBotToken: ""  # required
+  grafanaServiceToken: "YOUR_GRAFANA_SERVICE_TOKEN"  # required
+  discordBotToken: "YOUR_DISCORD_BOT_TOKEN"  # required
   openrouterApiKey: ""  # optional
 
 resources:
@@ -41,4 +41,4 @@ securityContext: {}
 
 nodeSelector: {}
 tolerations: []
-affinity: {} 
+affinity: {}
