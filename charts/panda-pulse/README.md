@@ -1,6 +1,6 @@
 # panda-pulse
 
-![Version: 0.0.1](https://img.shields.io/badge/Version-0.0.1-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: latest](https://img.shields.io/badge/AppVersion-latest-informational?style=flat-square)
+![Version: 0.0.2](https://img.shields.io/badge/Version-0.0.2-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: latest](https://img.shields.io/badge/AppVersion-latest-informational?style=flat-square)
 
 A Helm chart for Panda Pulse - Ethereum network monitoring and reporting tool
 
@@ -16,8 +16,8 @@ A Helm chart for Panda Pulse - Ethereum network monitoring and reporting tool
 |-----|------|---------|-------------|
 | affinity | object | `{}` |  |
 | config.discordChannel | string | `"YOUR_DISCORD_CHANNEL_ID"` |  |
-| config.ethereumCl | string | `""` |  |
-| config.ethereumEl | string | `""` |  |
+| config.ethereumCls | list | `[]` |  |
+| config.ethereumEls | list | `[]` |  |
 | config.grafanaBaseUrl | string | `""` |  |
 | config.network | string | `"YOUR_PREFERRED_NETWORK"` |  |
 | config.prometheusDatasourceId | string | `""` |  |

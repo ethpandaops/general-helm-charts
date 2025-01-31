@@ -12,8 +12,8 @@ schedule: "0 7 * * *"  # Run at 7am UTC daily
 config:
   network: "YOUR_PREFERRED_NETWORK"  # required
   discordChannel: "YOUR_DISCORD_CHANNEL_ID"  # required
-  ethereumCl: ""  # optional
-  ethereumEl: ""  # optional
+  ethereumCls: []  # array of CL clients to monitor
+  ethereumEls: []  # array of EL clients to monitor
   grafanaBaseUrl: ""  # optional
   prometheusDatasourceId: ""  # optional
 

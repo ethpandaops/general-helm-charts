@@ -1,3 +1,172 @@
+{{- if or .Values.config.ethereumCls .Values.config.ethereumEls }}
+{{- range .Values.config.ethereumCls }}
+---
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: {{ include "panda-pulse.fullname" $ }}-cl-{{ . | lower }}
+  labels:
+    {{- include "panda-pulse.labels" $ | nindent 4 }}
+    ethereum-client-type: cl
+    ethereum-client: {{ . | lower }}
+spec:
+  schedule: {{ $.Values.schedule | quote }}
+  concurrencyPolicy: Forbid
+  jobTemplate:
+    spec:
+      template:
+        metadata:
+          {{- with $.Values.podAnnotations }}
+          annotations:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          labels:
+            {{- include "panda-pulse.selectorLabels" $ | nindent 12 }}
+            ethereum-client-type: cl
+            ethereum-client: {{ . | lower }}
+        spec:
+          {{- with $.Values.imagePullSecrets }}
+          imagePullSecrets:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          serviceAccountName: {{ include "panda-pulse.serviceAccountName" $ }}
+          securityContext:
+            {{- toYaml $.Values.podSecurityContext | nindent 12 }}
+          containers:
+            - name: {{ $.Chart.Name }}
+              securityContext:
+                {{- toYaml $.Values.securityContext | nindent 16 }}
+              image: "{{ $.Values.image.repository }}:{{ $.Values.image.tag | default $.Chart.AppVersion }}"
+              imagePullPolicy: {{ $.Values.image.pullPolicy }}
+              args:
+                - --network={{ required "A valid network is required" $.Values.config.network }}
+                - --discord-channel={{ required "A valid Discord channel ID is required" $.Values.config.discordChannel }}
+                - --ethereum-cl={{ . }}
+                {{- if $.Values.config.grafanaBaseUrl }}
+                - --grafana-base-url={{ $.Values.config.grafanaBaseUrl }}
+                {{- end }}
+                {{- if $.Values.config.prometheusDatasourceId }}
+                - --prometheus-datasource-id={{ $.Values.config.prometheusDatasourceId }}
+                {{- end }}
+              env:
+                - name: GRAFANA_SERVICE_TOKEN
+                  valueFrom:
+                    secretKeyRef:
+                      name: {{ include "panda-pulse.fullname" $ }}
+                      key: grafana-service-token
+                - name: DISCORD_BOT_TOKEN
+                  valueFrom:
+                    secretKeyRef:
+                      name: {{ include "panda-pulse.fullname" $ }}
+                      key: discord-bot-token
+                {{- if $.Values.secrets.openrouterApiKey }}
+                - name: OPENROUTER_API_KEY
+                  valueFrom:
+                    secretKeyRef:
+                      name: {{ include "panda-pulse.fullname" $ }}
+                      key: openrouter-api-key
+                {{- end }}
+              resources:
+                {{- toYaml $.Values.resources | nindent 16 }}
+          {{- with $.Values.nodeSelector }}
+          nodeSelector:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          {{- with $.Values.affinity }}
+          affinity:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          {{- with $.Values.tolerations }}
+          tolerations:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          restartPolicy: OnFailure
+{{- end }}
+{{- range .Values.config.ethereumEls }}
+---
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: {{ include "panda-pulse.fullname" $ }}-el-{{ . | lower }}
+  labels:
+    {{- include "panda-pulse.labels" $ | nindent 4 }}
+    ethereum-client-type: el
+    ethereum-client: {{ . | lower }}
+spec:
+  schedule: {{ $.Values.schedule | quote }}
+  concurrencyPolicy: Forbid
+  jobTemplate:
+    spec:
+      template:
+        metadata:
+          {{- with $.Values.podAnnotations }}
+          annotations:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          labels:
+            {{- include "panda-pulse.selectorLabels" $ | nindent 12 }}
+            ethereum-client-type: el
+            ethereum-client: {{ . | lower }}
+        spec:
+          {{- with $.Values.imagePullSecrets }}
+          imagePullSecrets:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          serviceAccountName: {{ include "panda-pulse.serviceAccountName" $ }}
+          securityContext:
+            {{- toYaml $.Values.podSecurityContext | nindent 12 }}
+          containers:
+            - name: {{ $.Chart.Name }}
+              securityContext:
+                {{- toYaml $.Values.securityContext | nindent 16 }}
+              image: "{{ $.Values.image.repository }}:{{ $.Values.image.tag | default $.Chart.AppVersion }}"
+              imagePullPolicy: {{ $.Values.image.pullPolicy }}
+              args:
+                - --network={{ required "A valid network is required" $.Values.config.network }}
+                - --discord-channel={{ required "A valid Discord channel ID is required" $.Values.config.discordChannel }}
+                - --ethereum-el={{ . }}
+                {{- if $.Values.config.grafanaBaseUrl }}
+                - --grafana-base-url={{ $.Values.config.grafanaBaseUrl }}
+                {{- end }}
+                {{- if $.Values.config.prometheusDatasourceId }}
+                - --prometheus-datasource-id={{ $.Values.config.prometheusDatasourceId }}
+                {{- end }}
+              env:
+                - name: GRAFANA_SERVICE_TOKEN
+                  valueFrom:
+                    secretKeyRef:
+                      name: {{ include "panda-pulse.fullname" $ }}
+                      key: grafana-service-token
+                - name: DISCORD_BOT_TOKEN
+                  valueFrom:
+                    secretKeyRef:
+                      name: {{ include "panda-pulse.fullname" $ }}
+                      key: discord-bot-token
+                {{- if $.Values.secrets.openrouterApiKey }}
+                - name: OPENROUTER_API_KEY
+                  valueFrom:
+                    secretKeyRef:
+                      name: {{ include "panda-pulse.fullname" $ }}
+                      key: openrouter-api-key
+                {{- end }}
+              resources:
+                {{- toYaml $.Values.resources | nindent 16 }}
+          {{- with $.Values.nodeSelector }}
+          nodeSelector:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          {{- with $.Values.affinity }}
+          affinity:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          {{- with $.Values.tolerations }}
+          tolerations:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          restartPolicy: OnFailure
+{{- end }}
+{{- else }}
+---
 apiVersion: batch/v1
 kind: CronJob
 metadata:
@@ -34,12 +203,6 @@ spec:
               args:
                 - --network={{ required "A valid network is required" .Values.config.network }}
                 - --discord-channel={{ required "A valid Discord channel ID is required" .Values.config.discordChannel }}
-                {{- if .Values.config.ethereumCl }}
-                - --ethereum-cl={{ .Values.config.ethereumCl }}
-                {{- end }}
-                {{- if .Values.config.ethereumEl }}
-                - --ethereum-el={{ .Values.config.ethereumEl }}
-                {{- end }}
                 {{- if .Values.config.grafanaBaseUrl }}
                 - --grafana-base-url={{ .Values.config.grafanaBaseUrl }}
                 {{- end }}
@@ -78,4 +241,5 @@ spec:
           tolerations:
             {{- toYaml . | nindent 12 }}
           {{- end }}
-          restartPolicy: OnFailure 
+          restartPolicy: OnFailure
+{{- end }}
