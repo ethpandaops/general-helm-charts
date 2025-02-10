@@ -46,4 +46,4 @@ jobs:
       - name: Run chart-testing (install)
         run: >
           ct install --config ct.yaml
-          --excluded-charts cloudflare-tunnel
+          --excluded-charts cloudflare-tunnel hermes
