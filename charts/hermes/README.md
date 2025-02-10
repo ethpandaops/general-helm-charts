@@ -22,7 +22,7 @@ A GossipSub listener and tracer, subscribing to all relevant pubsub topics and t
 | config.metrics.addr | string | `"0.0.0.0"` | Metrics host |
 | config.metrics.port | int | `6060` | Metrics port |
 | config.stream.kinesis | object | `{"enabled":false,"region":"","stream":""}` | Kinesis configuration |
-| config.stream.s3 | object | `{"bucket":"","byteLimit":"1269760","enabled":true,"endpoint":"","flushInterval":"2s","flushers":2,"region":"","tag":"traces-test"}` | S3 configuration |
+| config.stream.s3 | object | `{"bucket":"","byteLimit":"1269760","enabled":true,"endpoint":"","flushInterval":"2s","flushers":2,"region":"","tag":""}` | S3 configuration |
 | config.stream.type | string | `"s3"` | Stream type (kinesis, s3, callback, logger) |
 | containerSecurityContext | object | See `values.yaml` | The security context for containers |
 | customArgs | list | `[]` | Custom args for the hermes container |
