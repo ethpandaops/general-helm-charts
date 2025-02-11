@@ -36,17 +36,17 @@ config:
       enabled: false
       region: ""
       stream: ""
-    
+
     # -- S3 configuration
     s3:
       enabled: true
       region: "" # S3 region (eg, us-east-1, ams3, nyc2, etc).
-      endpoint: ""  # Full endpoint URL for S3-compatible storage (eg, https://nyc2.digitaloceanspaces.com).
+      endpoint: ""  # Full endpoint URL for S3-compatible storage (eg, https://s3.us-east-1.amazonaws.com, https://nyc2.digitaloceanspaces.com).
       bucket: "" # Name of the bucket to use.
       tag: "" # The bucket key/tag.
-      byteLimit: "1269760"  # 10MB is the default (using string to prevent scientific notation).
-      flushers: 2  # 2 is the default.
-      flushInterval: "2s"  # 2s is the default.
+      byteLimit: "25000000"  # 10MB is the default (using string to prevent scientific notation).
+      flushers: 12  # 2 is the default.
+      flushInterval: "40s"  # 2s is the default.
 
   # Metrics Configuration
   metrics:
