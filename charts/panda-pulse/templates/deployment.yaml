@@ -1,0 +1,94 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "panda-pulse.fullname" . }}
+  labels:
+    {{- include "panda-pulse.labels" . | nindent 4 }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      {{- include "panda-pulse.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      {{- with .Values.podAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      labels:
+        {{- include "panda-pulse.selectorLabels" . | nindent 8 }}
+    spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      serviceAccountName: {{ include "panda-pulse.serviceAccountName" . }}
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      containers:
+        - name: {{ .Chart.Name }}
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          env:
+            - name: GRAFANA_SERVICE_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: {{ include "panda-pulse.fullname" . }}
+                  key: grafana-service-token
+            - name: DISCORD_BOT_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: {{ include "panda-pulse.fullname" . }}
+                  key: discord-bot-token
+            - name: AWS_ACCESS_KEY_ID
+              valueFrom:
+                secretKeyRef:
+                  name: {{ include "panda-pulse.fullname" . }}
+                  key: aws-access-key-id
+            - name: AWS_SECRET_ACCESS_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: {{ include "panda-pulse.fullname" . }}
+                  key: aws-secret-access-key
+            - name: S3_BUCKET
+              value: {{ required "A valid S3 bucket is required in config.s3.bucket" .Values.config.s3.bucket }}
+            - name: S3_BUCKET_PREFIX
+              value: {{ .Values.config.s3.bucketPrefix | default "ethrand" }}
+            - name: AWS_REGION
+              value: {{ .Values.config.s3.region | default "ams3" }}
+            {{- if .Values.config.s3.endpointUrl }}
+            - name: AWS_ENDPOINT_URL
+              value: {{ .Values.config.s3.endpointUrl }}
+            {{- end }}
+            {{- if .Values.config.grafanaBaseUrl }}
+            - name: GRAFANA_BASE_URL
+              value: {{ .Values.config.grafanaBaseUrl }}
+            {{- end }}
+            {{- if .Values.config.prometheusDatasourceId }}
+            - name: PROMETHEUS_DATASOURCE_ID
+              value: {{ .Values.config.prometheusDatasourceId }}
+            {{- end }}
+            {{- if .Values.config.healthCheckAddress }}
+            - name: HEALTH_CHECK_ADDRESS
+              value: {{ .Values.config.healthCheckAddress }}
+            {{- end }}
+            {{- if .Values.config.metricsAddress }}
+            - name: METRICS_ADDRESS
+              value: {{ .Values.config.metricsAddress }}
+            {{- end }}
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }} 
