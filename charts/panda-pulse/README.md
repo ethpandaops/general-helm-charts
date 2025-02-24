@@ -1,6 +1,6 @@
 # panda-pulse
 
-![Version: 0.0.2](https://img.shields.io/badge/Version-0.0.2-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: latest](https://img.shields.io/badge/AppVersion-latest-informational?style=flat-square)
+![Version: 1.0.0](https://img.shields.io/badge/Version-1.0.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: latest](https://img.shields.io/badge/AppVersion-latest-informational?style=flat-square)
 
 A Helm chart for Panda Pulse - Ethereum network monitoring and reporting tool
 
@@ -15,12 +15,14 @@ A Helm chart for Panda Pulse - Ethereum network monitoring and reporting tool
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
 | affinity | object | `{}` |  |
-| config.discordChannel | string | `"YOUR_DISCORD_CHANNEL_ID"` |  |
-| config.ethereumCls | list | `[]` |  |
-| config.ethereumEls | list | `[]` |  |
 | config.grafanaBaseUrl | string | `""` |  |
-| config.network | string | `"YOUR_PREFERRED_NETWORK"` |  |
+| config.healthCheckAddress | string | `""` |  |
+| config.metricsAddress | string | `""` |  |
 | config.prometheusDatasourceId | string | `""` |  |
+| config.s3.bucket | string | `"YOUR_S3_BUCKET"` |  |
+| config.s3.bucketPrefix | string | `""` |  |
+| config.s3.endpointUrl | string | `""` |  |
+| config.s3.region | string | `"ams3"` |  |
 | fullnameOverride | string | `""` |  |
 | image.pullPolicy | string | `"IfNotPresent"` |  |
 | image.repository | string | `"ethpandaops/panda-pulse"` |  |
@@ -34,10 +36,10 @@ A Helm chart for Panda Pulse - Ethereum network monitoring and reporting tool
 | resources.limits.memory | string | `"1Gi"` |  |
 | resources.requests.cpu | string | `"100m"` |  |
 | resources.requests.memory | string | `"128Mi"` |  |
-| schedule | string | `"0 7 * * *"` |  |
 | secrets.discordBotToken | string | `"YOUR_DISCORD_BOT_TOKEN"` |  |
 | secrets.grafanaServiceToken | string | `"YOUR_GRAFANA_SERVICE_TOKEN"` |  |
-| secrets.openrouterApiKey | string | `""` |  |
+| secrets.s3AccessKeyId | string | `"YOUR_S3_ACCESS_KEY_ID"` |  |
+| secrets.s3SecretAccessKey | string | `"YOUR_S3_SECRET_ACCESS_KEY"` |  |
 | securityContext | object | `{}` |  |
 | serviceAccount.annotations | object | `{}` |  |
 | serviceAccount.create | bool | `true` |  |

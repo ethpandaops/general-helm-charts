@@ -47,3 +47,4 @@ jobs:
         run: >
           ct install --config ct.yaml
           --excluded-charts cloudflare-tunnel
+          --excluded-charts panda-pulse

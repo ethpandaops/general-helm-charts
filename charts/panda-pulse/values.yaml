@@ -1,26 +1,28 @@
 image:
   repository: ethpandaops/panda-pulse
-  tag: latest
+  tag: "latest"
   pullPolicy: IfNotPresent
 
 imagePullSecrets: []
 nameOverride: ""
 fullnameOverride: ""
 
-schedule: "0 7 * * *"  # Run at 7am UTC daily
-
 config:
-  network: "YOUR_PREFERRED_NETWORK"  # required
-  discordChannel: "YOUR_DISCORD_CHANNEL_ID"  # required
-  ethereumCls: []  # array of CL clients to monitor
-  ethereumEls: []  # array of EL clients to monitor
   grafanaBaseUrl: ""  # optional
   prometheusDatasourceId: ""  # optional
+  healthCheckAddress: ""  # optional
+  metricsAddress: ""  # optional
+  s3:
+    bucket: "YOUR_S3_BUCKET"  # required
+    bucketPrefix: ""  # optional, defaults to "ethrand"
+    region: "ams3"  # optional, defaults to ams3
+    endpointUrl: ""  # optional
 
 secrets:
   grafanaServiceToken: "YOUR_GRAFANA_SERVICE_TOKEN"  # required
   discordBotToken: "YOUR_DISCORD_BOT_TOKEN"  # required
-  openrouterApiKey: ""  # optional
+  s3AccessKeyId: "YOUR_S3_ACCESS_KEY_ID"  # required
+  s3SecretAccessKey: "YOUR_S3_SECRET_ACCESS_KEY"  # required
 
 resources:
   limits:
