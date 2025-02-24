@@ -44,3 +44,23 @@ securityContext: {}
 nodeSelector: {}
 tolerations: []
 affinity: {}
+
+serviceMonitor:
+  enabled: false
+  labels: {}
+
+service:
+  type: ClusterIP
+  ports:
+    - name: metrics
+      port: 9091
+    - name: healthz
+      port: 9191
+
+ports:
+  - name: metrics
+    containerPort: 9091
+    protocol: TCP
+  - name: healthz
+    containerPort: 9191
+    protocol: TCP
