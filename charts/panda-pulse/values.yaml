@@ -64,3 +64,21 @@ ports:
   - name: healthz
     containerPort: 9191
     protocol: TCP
+
+livenessProbe:
+  httpGet:
+    path: /healthz
+    port: healthz
+  initialDelaySeconds: 30
+  periodSeconds: 10
+  timeoutSeconds: 5
+  failureThreshold: 3
+
+readinessProbe:
+  httpGet:
+    path: /healthz
+    port: healthz
+  initialDelaySeconds: 10
+  periodSeconds: 10
+  timeoutSeconds: 5
+  failureThreshold: 3

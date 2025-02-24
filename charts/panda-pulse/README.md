@@ -1,6 +1,6 @@
 # panda-pulse
 
-![Version: 1.0.0](https://img.shields.io/badge/Version-1.0.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: latest](https://img.shields.io/badge/AppVersion-latest-informational?style=flat-square)
+![Version: 1.0.1](https://img.shields.io/badge/Version-1.0.1-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: latest](https://img.shields.io/badge/AppVersion-latest-informational?style=flat-square)
 
 A Helm chart for Panda Pulse - Ethereum network monitoring and reporting tool
 
@@ -28,10 +28,28 @@ A Helm chart for Panda Pulse - Ethereum network monitoring and reporting tool
 | image.repository | string | `"ethpandaops/panda-pulse"` |  |
 | image.tag | string | `"latest"` |  |
 | imagePullSecrets | list | `[]` |  |
+| livenessProbe.failureThreshold | int | `3` |  |
+| livenessProbe.httpGet.path | string | `"/healthz"` |  |
+| livenessProbe.httpGet.port | string | `"healthz"` |  |
+| livenessProbe.initialDelaySeconds | int | `30` |  |
+| livenessProbe.periodSeconds | int | `10` |  |
+| livenessProbe.timeoutSeconds | int | `5` |  |
 | nameOverride | string | `""` |  |
 | nodeSelector | object | `{}` |  |
 | podAnnotations | object | `{}` |  |
 | podSecurityContext | object | `{}` |  |
+| ports[0].containerPort | int | `9091` |  |
+| ports[0].name | string | `"metrics"` |  |
+| ports[0].protocol | string | `"TCP"` |  |
+| ports[1].containerPort | int | `9191` |  |
+| ports[1].name | string | `"healthz"` |  |
+| ports[1].protocol | string | `"TCP"` |  |
+| readinessProbe.failureThreshold | int | `3` |  |
+| readinessProbe.httpGet.path | string | `"/healthz"` |  |
+| readinessProbe.httpGet.port | string | `"healthz"` |  |
+| readinessProbe.initialDelaySeconds | int | `10` |  |
+| readinessProbe.periodSeconds | int | `10` |  |
+| readinessProbe.timeoutSeconds | int | `5` |  |
 | resources.limits.cpu | string | `"1000m"` |  |
 | resources.limits.memory | string | `"1Gi"` |  |
 | resources.requests.cpu | string | `"100m"` |  |
@@ -41,9 +59,16 @@ A Helm chart for Panda Pulse - Ethereum network monitoring and reporting tool
 | secrets.s3AccessKeyId | string | `"YOUR_S3_ACCESS_KEY_ID"` |  |
 | secrets.s3SecretAccessKey | string | `"YOUR_S3_SECRET_ACCESS_KEY"` |  |
 | securityContext | object | `{}` |  |
+| service.ports[0].name | string | `"metrics"` |  |
+| service.ports[0].port | int | `9091` |  |
+| service.ports[1].name | string | `"healthz"` |  |
+| service.ports[1].port | int | `9191` |  |
+| service.type | string | `"ClusterIP"` |  |
 | serviceAccount.annotations | object | `{}` |  |
 | serviceAccount.create | bool | `true` |  |
 | serviceAccount.name | string | `""` |  |
+| serviceMonitor.enabled | bool | `false` |  |
+| serviceMonitor.labels | object | `{}` |  |
 | tolerations | list | `[]` |  |
 
 ----------------------------------------------
