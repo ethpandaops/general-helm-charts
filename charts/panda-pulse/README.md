@@ -1,6 +1,6 @@
 # panda-pulse
 
-![Version: 1.0.1](https://img.shields.io/badge/Version-1.0.1-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: latest](https://img.shields.io/badge/AppVersion-latest-informational?style=flat-square)
+![Version: 1.0.2](https://img.shields.io/badge/Version-1.0.2-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: latest](https://img.shields.io/badge/AppVersion-latest-informational?style=flat-square)
 
 A Helm chart for Panda Pulse - Ethereum network monitoring and reporting tool
 
@@ -55,6 +55,7 @@ A Helm chart for Panda Pulse - Ethereum network monitoring and reporting tool
 | resources.requests.cpu | string | `"100m"` |  |
 | resources.requests.memory | string | `"128Mi"` |  |
 | secrets.discordBotToken | string | `"YOUR_DISCORD_BOT_TOKEN"` |  |
+| secrets.githubToken | string | `"YOUR_GITHUB_TOKEN"` |  |
 | secrets.grafanaServiceToken | string | `"YOUR_GRAFANA_SERVICE_TOKEN"` |  |
 | secrets.s3AccessKeyId | string | `"YOUR_S3_ACCESS_KEY_ID"` |  |
 | secrets.s3SecretAccessKey | string | `"YOUR_S3_SECRET_ACCESS_KEY"` |  |
