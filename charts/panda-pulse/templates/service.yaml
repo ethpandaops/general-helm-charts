@@ -8,10 +8,10 @@ spec:
   type: {{ .Values.service.type }}
   ports:
     {{- range .Values.service.ports }}
-    - port: {{ .port }}
+    - name: {{ .name }}
+      port: {{ .port }}
       targetPort: {{ .name }}
       protocol: TCP
-      name: {{ .name }}
     {{- end }}
   selector:
     {{- include "panda-pulse.selectorLabels" . | nindent 4 }}
