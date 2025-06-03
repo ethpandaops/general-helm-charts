@@ -1,0 +1,9 @@
+apiVersion: v2
+name: asynqmon
+description: A tool for monitoring asynq jobs
+home: https://github.com/hibiken/asynqmon
+type: application
+version: 0.0.1
+maintainers:
+  - name: savid
+    email: andrew.davis@ethereum.org
