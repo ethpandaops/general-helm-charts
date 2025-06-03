@@ -25,6 +25,7 @@ helm search repo ethpandaops-general-helm-charts
 
 ## List of charts
 
+- [`asynqmon`](charts/asynqmon)
 - [`cloudflare-tunnel`](charts/cloudflare-tunnel)
 - [`chproxy`](charts/chproxy)
 - [`panda-pulse`](charts/panda-pulse)
