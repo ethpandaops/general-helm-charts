@@ -1,5 +1,19 @@
 apiVersion: v1
 entries:
+  asynqmon:
+  - apiVersion: v2
+    created: "2025-06-03T05:02:06.11416823Z"
+    description: A tool for monitoring asynq jobs
+    digest: 9911e50e2c27b442e27b7f351aa3f1a9fac1869e44bf282fc4c6b8303dad9c8e
+    home: https://github.com/hibiken/asynqmon
+    maintainers:
+    - email: andrew.davis@ethereum.org
+      name: savid
+    name: asynqmon
+    type: application
+    urls:
+    - https://github.com/ethpandaops/general-helm-charts/releases/download/asynqmon-0.0.1/asynqmon-0.0.1.tgz
+    version: 0.0.1
   chproxy:
   - apiVersion: v2
     created: "2024-10-04T02:41:52.463128755Z"
@@ -152,4 +166,4 @@ entries:
     urls:
     - https://github.com/ethpandaops/general-helm-charts/releases/download/raw-configmap-0.1.0/raw-configmap-0.1.0.tgz
     version: 0.1.0
-generated: "2025-04-22T20:50:03.061313358Z"
+generated: "2025-06-03T05:02:06.114192896Z"
