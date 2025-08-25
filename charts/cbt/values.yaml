@@ -69,7 +69,7 @@ annotations: {}
 # @default -- See `values.yaml`
 livenessProbe:
   httpGet:
-    path: /
+    path: /health
     port: probe
   initialDelaySeconds: 60
   periodSeconds: 120
@@ -78,7 +78,7 @@ livenessProbe:
 # @default -- See `values.yaml`
 readinessProbe:
   httpGet:
-    path: /
+    path: /health
     port: probe
   initialDelaySeconds: 10
   periodSeconds: 10
