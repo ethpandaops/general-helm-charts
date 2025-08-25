@@ -7,10 +7,22 @@ metadata:
 spec:
   type: {{ .Values.service.type }}
   ports:
-    - port: {{ include "cbt.httpPort" . }}
-      targetPort: http
+    - port: {{ include "cbt.metricsPort" . }}
+      targetPort: metrics
       protocol: TCP
-      name: http
+      name: metrics
+    {{- if (include "cbt.pprofPort" .) }}
+    - port: {{ include "cbt.pprofPort" . }}
+      targetPort: pprof
+      protocol: TCP
+      name: pprof
+    {{- end }}
+    {{- if (include "cbt.probePort" .) }}
+    - port: {{ include "cbt.probePort" . }}
+      targetPort: probe
+      protocol: TCP
+      name: probe
+    {{- end }}
   {{- if .Values.extraPorts }}
     {{ toYaml .Values.extraPorts | nindent 4}}
   {{- end }}
