@@ -31,6 +31,7 @@ helm search repo ethpandaops-general-helm-charts
 - [`chproxy`](charts/chproxy)
 - [`panda-pulse`](charts/panda-pulse)
 - [`raw-configmap`](charts/raw-configmap)
+- [`redis-commander`](charts/redis-commander)
 
 ## Development
 
