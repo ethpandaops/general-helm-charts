@@ -1,0 +1,9 @@
+apiVersion: v2
+name: redis-commander
+description: Redis web management tool written in node.js
+home: https://github.com/joeferner/redis-commander
+type: application
+version: 0.0.1
+maintainers:
+  - name: savid
+    email: andrew.davis@ethereum.org
