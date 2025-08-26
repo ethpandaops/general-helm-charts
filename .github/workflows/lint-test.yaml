@@ -49,3 +49,4 @@ jobs:
           --excluded-charts cloudflare-tunnel
           --excluded-charts panda-pulse
           --excluded-charts cbt
+          --excluded-charts redis-commander
