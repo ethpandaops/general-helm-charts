@@ -21,6 +21,7 @@ config:
 secrets:
   grafanaServiceToken: "YOUR_GRAFANA_SERVICE_TOKEN"  # required
   discordBotToken: "YOUR_DISCORD_BOT_TOKEN"  # required
+  discordGuildId: "YOUR_DISCORD_GUILD_ID"  # required
   s3AccessKeyId: "YOUR_S3_ACCESS_KEY_ID"  # required
   s3SecretAccessKey: "YOUR_S3_SECRET_ACCESS_KEY"  # required
   githubToken: "YOUR_GITHUB_TOKEN" # required
