@@ -32,19 +32,42 @@ secretEnv: {}
 args: []
 
 config:
+  # -- Logging level: panic, fatal, warn, info, debug, trace
   logging: "info"
+  # -- Metrics server address
   metricsAddr: ":9090"
-  healthCheckAddr: ":8080"
+  # -- Health check server address
+  healthCheckAddr: "8081"
   clickhouse:
-    url: http://clickhouse:8123
+    # -- Connection URL (required)
+    url: "http://clickhouse:8123"
   redis:
+    # -- Redis connection URL (required)
     url: "redis://redis:6379/0"
   scheduler:
+    # -- Maximum number of concurrent scheduling operations
     concurrency: 10
+    # -- Admin table consolidation schedule
+    # Uses asynq cron format: @every duration, @hourly, @daily, or cron expression
     consolidation: "@every 10m"
   worker:
+    # -- Number of concurrent tasks to process
     concurrency: 10
+    # -- Seconds to wait for graceful shutdown
     shutdownTimeout: 60
+  # API service configuration
+  api:
+    # -- Enable or disable the API service
+    enabled: true
+    # -- Address to serve the API on
+    addr: ":8888"
+
+  # Frontend service configuration
+  frontend:
+    # -- Enable or disable the frontend service
+    enabled: true
+    # -- Address to serve the frontend on
+    addr: ":8080"
 
 # -- Custom args for the cbt container
 customArgs: []
