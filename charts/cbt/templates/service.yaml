@@ -23,12 +23,6 @@ spec:
       protocol: TCP
       name: probe
     {{- end }}
-    {{- if (include "cbt.apiPort" .) }}
-    - port: {{ include "cbt.apiPort" . }}
-      targetPort: api
-      protocol: TCP
-      name: api
-    {{- end }}
     {{- if (include "cbt.frontendPort" .) }}
     - port: {{ include "cbt.frontendPort" . }}
       targetPort: frontend
