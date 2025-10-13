@@ -1,6 +1,6 @@
 # cbt
 
-![Version: 0.0.3](https://img.shields.io/badge/Version-0.0.3-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square)
+![Version: 0.0.4](https://img.shields.io/badge/Version-0.0.4-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square)
 
 A simple ClickHouse-focused data transformation tool
 
@@ -23,8 +23,6 @@ A simple ClickHouse-focused data transformation tool
 | autoscaling.maxReplicas | int | `3` | Maximum number of replicas |
 | autoscaling.minReplicas | int | `2` | Minimum number of replicas |
 | autoscaling.targetCPUUtilizationPercentage | int | `85` | Target CPU utilization percentage |
-| config.api.addr | string | `":8888"` | Address to serve the API on |
-| config.api.enabled | bool | `true` | Enable or disable the API service |
 | config.clickhouse.url | string | `"http://clickhouse:8123"` | Connection URL (required) |
 | config.frontend.addr | string | `":8080"` | Address to serve the frontend on |
 | config.frontend.enabled | bool | `true` | Enable or disable the frontend service |

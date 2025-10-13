@@ -55,12 +55,6 @@ config:
     concurrency: 10
     # -- Seconds to wait for graceful shutdown
     shutdownTimeout: 60
-  # API service configuration
-  api:
-    # -- Enable or disable the API service
-    enabled: true
-    # -- Address to serve the API on
-    addr: ":8888"
 
   # Frontend service configuration
   frontend:
