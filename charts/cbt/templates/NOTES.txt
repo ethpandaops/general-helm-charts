@@ -2,9 +2,6 @@ CBT has been deployed successfully!
 
 Exposed services:
 - Metrics: {{ include "cbt.metricsPort" . }}
-{{- if (include "cbt.apiPort" .) }}
-- API: {{ include "cbt.apiPort" . }}
-{{- end }}
 {{- if (include "cbt.frontendPort" .) }}
 - Frontend: {{ include "cbt.frontendPort" . }}
 {{- end }}
@@ -18,8 +15,5 @@ To access the services, use port-forwarding:
   export POD_NAME=$(kubectl get pods --namespace {{ .Release.Namespace }} -l "app.kubernetes.io/name={{ include "cbt.name" . }},app.kubernetes.io/instance={{ .Release.Name }}" -o jsonpath="{.items[0].metadata.name}")
 {{- if (include "cbt.frontendPort" .) }}
   kubectl --namespace {{ .Release.Namespace }} port-forward $POD_NAME {{ include "cbt.frontendPort" . }}:{{ include "cbt.frontendPort" . }}
-{{- end }}
-{{- if (include "cbt.apiPort" .) }}
-  kubectl --namespace {{ .Release.Namespace }} port-forward $POD_NAME {{ include "cbt.apiPort" . }}:{{ include "cbt.apiPort" . }}
 {{- end }}
 {{- end }}
