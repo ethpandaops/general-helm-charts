@@ -1,6 +1,6 @@
 # cbt
 
-![Version: 0.0.3](https://img.shields.io/badge/Version-0.0.3-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square)
+![Version: 0.0.4](https://img.shields.io/badge/Version-0.0.4-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square)
 
 A simple ClickHouse-focused data transformation tool
 
@@ -23,8 +23,6 @@ A simple ClickHouse-focused data transformation tool
 | autoscaling.maxReplicas | int | `3` | Maximum number of replicas |
 | autoscaling.minReplicas | int | `2` | Minimum number of replicas |
 | autoscaling.targetCPUUtilizationPercentage | int | `85` | Target CPU utilization percentage |
-| config.api.addr | string | `":8888"` | Address to serve the API on |
-| config.api.enabled | bool | `true` | Enable or disable the API service |
 | config.clickhouse.url | string | `"http://clickhouse:8123"` | Connection URL (required) |
 | config.frontend.addr | string | `":8080"` | Address to serve the frontend on |
 | config.frontend.enabled | bool | `true` | Enable or disable the frontend service |
@@ -50,6 +48,11 @@ A simple ClickHouse-focused data transformation tool
 | image.repository | string | `"ethpandaops/cbt"` | cbt container image repository |
 | image.tag | string | `"latest"` | cbt container image tag |
 | imagePullSecrets | list | `[]` | Image pull secrets for Docker images |
+| ingress.http.annotations | object | `{}` | Annotations for Ingress |
+| ingress.http.className | string | `""` |  |
+| ingress.http.enabled | bool | `false` | Ingress resource for the HTTP frontend |
+| ingress.http.hosts | list | `[{"host":"chart-example.local","paths":[{"path":"/","pathType":"ImplementationSpecific"}]}]` | Ingress host |
+| ingress.http.tls | list | `[]` | Ingress TLS |
 | initContainers | list | `[]` | Additional init containers |
 | lifecycle | object | See `values.yaml` | Lifecycle hooks |
 | livenessProbe | object | See `values.yaml` | Liveness probe |

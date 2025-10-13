@@ -81,12 +81,6 @@ Create the name of the service account to use
 {{- end -}}
 {{- end -}}
 
-{{- define "cbt.apiPort" -}}
-{{- if .Values.config.api.enabled -}}
-{{ (split ":" .Values.config.api.addr)._1 | default "8888" }}
-{{- end -}}
-{{- end -}}
-
 {{- define "cbt.frontendPort" -}}
 {{- if .Values.config.frontend.enabled -}}
 {{ (split ":" .Values.config.frontend.addr)._1 | default "8080" }}

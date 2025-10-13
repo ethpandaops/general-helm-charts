@@ -80,11 +80,6 @@ spec:
             containerPort: {{ include "cbt.probePort" . }}
             protocol: TCP
           {{- end }}
-          {{- if (include "cbt.apiPort" .) }}
-          - name: api
-            containerPort: {{ include "cbt.apiPort" . }}
-            protocol: TCP
-          {{- end }}
           {{- if (include "cbt.frontendPort" .) }}
           - name: frontend
             containerPort: {{ include "cbt.frontendPort" . }}
