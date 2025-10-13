@@ -16,6 +16,19 @@ entries:
     version: 0.0.1
   cbt:
   - apiVersion: v2
+    created: "2025-10-13T02:11:31.519827403Z"
+    description: A simple ClickHouse-focused data transformation tool
+    digest: 7c93a63043bb2e8b78443bd549d75c9d8e636ea5beb0d7e25364404d60dfb63b
+    home: https://github.com/ethpandaops/cbt
+    maintainers:
+    - email: andrew.davis@ethereum.org
+      name: savid
+    name: cbt
+    type: application
+    urls:
+    - https://github.com/ethpandaops/general-helm-charts/releases/download/cbt-0.0.3/cbt-0.0.3.tgz
+    version: 0.0.3
+  - apiVersion: v2
     created: "2025-08-25T22:44:25.671499183Z"
     description: A simple ClickHouse-focused data transformation tool
     digest: b1e16747f5edf2a09c35a540f79c88a19d7e8c4c7478e1e159abbbbdc7800fd3
@@ -207,4 +220,4 @@ entries:
     urls:
     - https://github.com/ethpandaops/general-helm-charts/releases/download/raw-configmap-0.1.0/raw-configmap-0.1.0.tgz
     version: 0.1.0
-generated: "2025-09-08T21:35:57.224096929Z"
+generated: "2025-10-13T02:11:31.519861296Z"
