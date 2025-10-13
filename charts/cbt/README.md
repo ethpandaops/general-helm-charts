@@ -1,6 +1,6 @@
 # cbt
 
-![Version: 0.0.2](https://img.shields.io/badge/Version-0.0.2-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square)
+![Version: 0.0.3](https://img.shields.io/badge/Version-0.0.3-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square)
 
 A simple ClickHouse-focused data transformation tool
 
@@ -23,15 +23,19 @@ A simple ClickHouse-focused data transformation tool
 | autoscaling.maxReplicas | int | `3` | Maximum number of replicas |
 | autoscaling.minReplicas | int | `2` | Minimum number of replicas |
 | autoscaling.targetCPUUtilizationPercentage | int | `85` | Target CPU utilization percentage |
-| config.clickhouse.url | string | `"http://clickhouse:8123"` |  |
-| config.healthCheckAddr | string | `":8080"` |  |
-| config.logging | string | `"info"` |  |
-| config.metricsAddr | string | `":9090"` |  |
-| config.redis.url | string | `"redis://redis:6379/0"` |  |
-| config.scheduler.concurrency | int | `10` |  |
-| config.scheduler.consolidation | string | `"@every 10m"` |  |
-| config.worker.concurrency | int | `10` |  |
-| config.worker.shutdownTimeout | int | `60` |  |
+| config.api.addr | string | `":8888"` | Address to serve the API on |
+| config.api.enabled | bool | `true` | Enable or disable the API service |
+| config.clickhouse.url | string | `"http://clickhouse:8123"` | Connection URL (required) |
+| config.frontend.addr | string | `":8080"` | Address to serve the frontend on |
+| config.frontend.enabled | bool | `true` | Enable or disable the frontend service |
+| config.healthCheckAddr | string | `"8081"` | Health check server address |
+| config.logging | string | `"info"` | Logging level: panic, fatal, warn, info, debug, trace |
+| config.metricsAddr | string | `":9090"` | Metrics server address |
+| config.redis.url | string | `"redis://redis:6379/0"` | Redis connection URL (required) |
+| config.scheduler.concurrency | int | `10` | Maximum number of concurrent scheduling operations |
+| config.scheduler.consolidation | string | `"@every 10m"` | Admin table consolidation schedule Uses asynq cron format: @every duration, @hourly, @daily, or cron expression |
+| config.worker.concurrency | int | `10` | Number of concurrent tasks to process |
+| config.worker.shutdownTimeout | int | `60` | Seconds to wait for graceful shutdown |
 | containerSecurityContext | object | See `values.yaml` | The security context for containers |
 | customArgs | list | `[]` | Custom args for the cbt container |
 | customCommand | list | `[]` | Command replacement for the cbt container |
