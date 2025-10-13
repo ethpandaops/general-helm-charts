@@ -48,6 +48,11 @@ A simple ClickHouse-focused data transformation tool
 | image.repository | string | `"ethpandaops/cbt"` | cbt container image repository |
 | image.tag | string | `"latest"` | cbt container image tag |
 | imagePullSecrets | list | `[]` | Image pull secrets for Docker images |
+| ingress.http.annotations | object | `{}` | Annotations for Ingress |
+| ingress.http.className | string | `""` |  |
+| ingress.http.enabled | bool | `false` | Ingress resource for the HTTP frontend |
+| ingress.http.hosts | list | `[{"host":"chart-example.local","paths":[{"path":"/","pathType":"ImplementationSpecific"}]}]` | Ingress host |
+| ingress.http.tls | list | `[]` | Ingress TLS |
 | initContainers | list | `[]` | Additional init containers |
 | lifecycle | object | See `values.yaml` | Lifecycle hooks |
 | livenessProbe | object | See `values.yaml` | Liveness probe |
