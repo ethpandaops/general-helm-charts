@@ -73,6 +73,22 @@ Create the name of the service account to use
 
 {{- define "cbt.probePort" -}}
 {{- if .Values.config.healthCheckAddr -}}
-{{ (split ":" .Values.config.healthCheckAddr)._1 | default "8080" }}
+{{- if hasPrefix ":" .Values.config.healthCheckAddr -}}
+{{ trimPrefix ":" .Values.config.healthCheckAddr }}
+{{- else -}}
+{{ .Values.config.healthCheckAddr }}
+{{- end -}}
+{{- end -}}
+{{- end -}}
+
+{{- define "cbt.apiPort" -}}
+{{- if .Values.config.api.enabled -}}
+{{ (split ":" .Values.config.api.addr)._1 | default "8888" }}
+{{- end -}}
+{{- end -}}
+
+{{- define "cbt.frontendPort" -}}
+{{- if .Values.config.frontend.enabled -}}
+{{ (split ":" .Values.config.frontend.addr)._1 | default "8080" }}
 {{- end -}}
 {{- end -}}
