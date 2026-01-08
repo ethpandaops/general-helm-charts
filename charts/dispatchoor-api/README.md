@@ -19,8 +19,8 @@ Dispatchoor API - GitHub Actions workflow dispatcher backend
 | env | list | `[]` |  |
 | fullnameOverride | string | `""` |  |
 | image.pullPolicy | string | `"IfNotPresent"` |  |
-| image.repository | string | `"dispatchoor-api"` |  |
-| image.tag | string | `""` |  |
+| image.repository | string | `"ghcr.io/ethpandaops/dispatchoor-api"` |  |
+| image.tag | string | `"latest"` |  |
 | imagePullSecrets | list | `[]` |  |
 | ingress.annotations | object | `{}` |  |
 | ingress.className | string | `""` |  |

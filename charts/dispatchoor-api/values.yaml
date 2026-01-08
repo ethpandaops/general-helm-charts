@@ -3,9 +3,9 @@
 replicaCount: 1
 
 image:
-  repository: dispatchoor-api
+  repository: ghcr.io/ethpandaops/dispatchoor-api
   pullPolicy: IfNotPresent
-  tag: ""
+  tag: latest
 
 imagePullSecrets: []
 nameOverride: ""

@@ -19,8 +19,8 @@ Dispatchoor UI - GitHub Actions workflow dispatcher frontend
 | env[0].value | string | `"http://dispatchoor-api:9090"` |  |
 | fullnameOverride | string | `""` |  |
 | image.pullPolicy | string | `"IfNotPresent"` |  |
-| image.repository | string | `"dispatchoor-web"` |  |
-| image.tag | string | `""` |  |
+| image.repository | string | `"ghcr.io/ethpandaops/dispatchoor-ui"` |  |
+| image.tag | string | `"latest"` |  |
 | imagePullSecrets | list | `[]` |  |
 | ingress.annotations | object | `{}` |  |
 | ingress.className | string | `""` |  |
