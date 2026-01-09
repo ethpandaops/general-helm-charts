@@ -1,0 +1,14 @@
+apiVersion: v2
+name: dispatchoor-ui
+description: Dispatchoor UI - GitHub Actions workflow dispatcher frontend
+type: application
+version: 0.1.0
+appVersion: "1.0.0"
+maintainers:
+  - name: skylenet
+    email: rafael@skyle.net
+keywords:
+  - dispatchoor
+  - github-actions
+  - workflow-dispatcher
+  - frontend

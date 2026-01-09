@@ -1,0 +1,135 @@
+# Default values for dispatchoor-api
+
+replicaCount: 1
+
+image:
+  repository: ghcr.io/ethpandaops/dispatchoor-api
+  pullPolicy: IfNotPresent
+  tag: latest
+
+imagePullSecrets: []
+nameOverride: ""
+fullnameOverride: ""
+
+serviceAccount:
+  create: true
+  automount: true
+  annotations: {}
+  name: ""
+
+podAnnotations: {}
+podLabels: {}
+
+podSecurityContext:
+  fsGroup: 1000
+
+securityContext:
+  runAsNonRoot: true
+  runAsUser: 1000
+  runAsGroup: 1000
+  allowPrivilegeEscalation: false
+  capabilities:
+    drop:
+      - ALL
+  readOnlyRootFilesystem: true
+
+service:
+  type: ClusterIP
+  port: 9090
+
+ingress:
+  enabled: false
+  className: ""
+  annotations: {}
+  hosts:
+    - host: dispatchoor-api.local
+      paths:
+        - path: /
+          pathType: Prefix
+  tls: []
+
+resources: {}
+  # limits:
+  #   cpu: 500m
+  #   memory: 256Mi
+  # requests:
+  #   cpu: 100m
+  #   memory: 128Mi
+
+livenessProbe:
+  httpGet:
+    path: /health
+    port: http
+  initialDelaySeconds: 5
+  periodSeconds: 30
+  timeoutSeconds: 5
+  failureThreshold: 3
+
+readinessProbe:
+  httpGet:
+    path: /health
+    port: http
+  initialDelaySeconds: 5
+  periodSeconds: 10
+  timeoutSeconds: 5
+  failureThreshold: 3
+
+nodeSelector: {}
+tolerations: []
+affinity: {}
+
+# Persistence for SQLite database
+persistence:
+  enabled: true
+  storageClass: ""
+  accessModes:
+    - ReadWriteOnce
+  size: 1Gi
+  annotations: {}
+
+# Environment variables (plain)
+env: []
+  # - name: FOO
+  #   value: bar
+
+# Secret environment variables
+# These will be stored in a Secret and mounted as env vars
+secretEnv:
+  GITHUB_TOKEN: ""
+  # GITHUB_CLIENT_ID: "id-value"
+  # GITHUB_CLIENT_SECRET: "secret-value"
+
+# Application configuration
+# Raw config.yaml content
+config: |
+  server:
+    listen: ":9090"
+    cors_origins:
+      - "*"
+
+  database:
+    driver: sqlite
+    sqlite:
+      path: /app/data/dispatchoor.db
+
+  github:
+    token: "${GITHUB_TOKEN}"
+    poll_interval: 60s
+    rate_limit_buffer: 100
+
+  dispatcher:
+    enabled: true
+    interval: 30s
+    tracking_interval: 30s
+
+  auth:
+    session_ttl: 24h
+    basic:
+      enabled: true
+      users: []
+
+  history:
+    retention_days: 30
+    cleanup_interval: 1h
+
+  groups: {}
