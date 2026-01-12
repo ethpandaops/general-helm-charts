@@ -137,6 +137,23 @@ entries:
   dispatchoor-api:
   - apiVersion: v2
     appVersion: 1.0.0
+    created: "2026-01-12T10:31:35.819710824Z"
+    description: Dispatchoor API - GitHub Actions workflow dispatcher backend
+    digest: 7fa35a513b101529da6a2e31078c6ab73be2dc11a0ec7d25843cea0ce48a4d1d
+    keywords:
+    - dispatchoor
+    - github-actions
+    - workflow-dispatcher
+    maintainers:
+    - email: rafael@skyle.net
+      name: skylenet
+    name: dispatchoor-api
+    type: application
+    urls:
+    - https://github.com/ethpandaops/general-helm-charts/releases/download/dispatchoor-api-0.1.1/dispatchoor-api-0.1.1.tgz
+    version: 0.1.1
+  - apiVersion: v2
+    appVersion: 1.0.0
     created: "2026-01-09T12:46:02.424118818Z"
     description: Dispatchoor API - GitHub Actions workflow dispatcher backend
     digest: 8098173534e634c41666df378286a3420b3d8af7e1efef8dae54fbb4a578b7f2
@@ -283,4 +300,4 @@ entries:
     urls:
     - https://github.com/ethpandaops/general-helm-charts/releases/download/raw-configmap-0.1.0/raw-configmap-0.1.0.tgz
     version: 0.1.0
-generated: "2026-01-09T12:46:02.57129065Z"
+generated: "2026-01-12T10:31:35.819740348Z"
