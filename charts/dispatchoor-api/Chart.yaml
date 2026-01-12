@@ -2,7 +2,7 @@ apiVersion: v2
 name: dispatchoor-api
 description: Dispatchoor API - GitHub Actions workflow dispatcher backend
 type: application
-version: 0.1.0
+version: 0.1.1
 appVersion: "1.0.0"
 maintainers:
   - name: skylenet
