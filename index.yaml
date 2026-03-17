@@ -300,4 +300,22 @@ entries:
     urls:
     - https://github.com/ethpandaops/general-helm-charts/releases/download/raw-configmap-0.1.0/raw-configmap-0.1.0.tgz
     version: 0.1.0
-generated: "2026-01-12T10:31:35.819740348Z"
+  wagie:
+  - apiVersion: v2
+    created: "2026-03-17T06:46:27.367169278Z"
+    description: A modular project orchestration platform
+    digest: 3d2f52534cedbb12aa1c2ae843ec0620f46969af81d8b5a071067e71dc3bffc7
+    home: https://github.com/ethpandaops/wagie
+    maintainers:
+    - email: sam.calder-mason@ethereum.org
+      name: samcm
+    - email: andrew.davis@ethereum.org
+      name: savid
+    - email: matt.evans@ethereum.org
+      name: mattevans
+    name: wagie
+    type: application
+    urls:
+    - https://github.com/ethpandaops/general-helm-charts/releases/download/wagie-0.1.0/wagie-0.1.0.tgz
+    version: 0.1.0
+generated: "2026-03-17T06:46:27.367212037Z"
