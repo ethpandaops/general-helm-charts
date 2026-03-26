@@ -82,6 +82,19 @@ entries:
     version: 0.0.1
   chproxy:
   - apiVersion: v2
+    created: "2026-03-26T03:02:13.014358951Z"
+    description: HTTP proxy and load balancer for ClickHouse
+    digest: c4b5a430c18d0b98eb8fe5777dc856fb3d4de15dce9b2218abf16fca54ecb667
+    home: https://www.chproxy.org
+    maintainers:
+    - email: andrew.davis@ethereum.org
+      name: savid
+    name: chproxy
+    type: application
+    urls:
+    - https://github.com/ethpandaops/general-helm-charts/releases/download/chproxy-0.0.2/chproxy-0.0.2.tgz
+    version: 0.0.2
+  - apiVersion: v2
     created: "2024-10-04T02:41:52.463128755Z"
     description: HTTP proxy and load balancer for ClickHouse
     digest: fa5f041a8e9b4707d84823271fc1b0c7f6f8c40243dba7d0bab5b7356e8176c1
@@ -335,4 +348,4 @@ entries:
     urls:
     - https://github.com/ethpandaops/general-helm-charts/releases/download/wagie-0.1.0/wagie-0.1.0.tgz
     version: 0.1.0
-generated: "2026-03-17T21:14:15.136109047Z"
+generated: "2026-03-26T03:02:13.014398364Z"
