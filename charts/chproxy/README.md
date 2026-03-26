@@ -1,7 +1,7 @@
 
 # chproxy
 
-![Version: 0.0.1](https://img.shields.io/badge/Version-0.0.1-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square)
+![Version: 0.0.2](https://img.shields.io/badge/Version-0.0.2-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square)
 
 HTTP proxy and load balancer for ClickHouse
 
@@ -34,6 +34,7 @@ HTTP proxy and load balancer for ClickHouse
 | containerSecurityContext | object | See `values.yaml` | The security context for containers |
 | customArgs | list | `[]` | Custom args for the chproxy container |
 | customCommand | list | `[]` | Command replacement for the chproxy container |
+| dnsPolicy | string | `"ClusterFirst"` | DNS policy for the pod (set to ClusterFirstWithHostNet when using hostNetwork) |
 | extraContainers | list | `[]` | Additional containers |
 | extraEnv | list | `[]` | Additional env variables |
 | extraPodPorts | list | `[]` | Extra Pod ports |
@@ -41,6 +42,7 @@ HTTP proxy and load balancer for ClickHouse
 | extraVolumeMounts | list | `[]` | Additional volume mounts |
 | extraVolumes | list | `[]` | Additional volumes |
 | fullnameOverride | string | `""` | Overrides the chart's computed fullname |
+| hostNetwork | bool | `false` | Enable host networking for the pod |
 | image.pullPolicy | string | `"IfNotPresent"` | chproxy container pull policy |
 | image.repository | string | `"contentsquareplatform/chproxy"` | chproxy container image repository |
 | image.tag | string | `"v1.26.5"` | chproxy container image tag |
