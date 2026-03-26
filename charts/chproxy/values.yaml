@@ -80,6 +80,12 @@ service:
   # -- Service type
   type: ClusterIP
 
+# -- Enable host networking for the pod
+hostNetwork: false
+
+# -- DNS policy for the pod (set to ClusterFirstWithHostNet when using hostNetwork)
+dnsPolicy: ClusterFirst
+
 # -- Affinity configuration for pods
 affinity: {}
 
