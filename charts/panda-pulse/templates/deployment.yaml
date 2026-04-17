@@ -53,11 +53,13 @@ spec:
                 secretKeyRef:
                   name: {{ include "panda-pulse.fullname" . }}
                   key: discord-bot-token
-            - name: DISCORD_GUILD_ID
+            {{- if .Values.secrets.discordGuildIds }}
+            - name: DISCORD_GUILD_IDS
               valueFrom:
                 secretKeyRef:
                   name: {{ include "panda-pulse.fullname" . }}
-                  key: discord-guild-id
+                  key: discord-guild-ids
+            {{- end }}
             - name: AWS_ACCESS_KEY_ID
               valueFrom:
                 secretKeyRef:
