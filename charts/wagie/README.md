@@ -1,6 +1,6 @@
 # wagie
 
-![Version: 0.2.0](https://img.shields.io/badge/Version-0.2.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square)
+![Version: 0.3.0](https://img.shields.io/badge/Version-0.3.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square)
 
 A modular project orchestration platform
 
@@ -13,7 +13,7 @@ A modular project orchestration platform
 | affinity | object | `{}` | Affinity configuration for pods |
 | annotations | object | `{}` | Annotations for the Deployment |
 | args | list | `[]` | Command arguments |
-| config | object | `{"assistant":{"model":"default","name":"assistant"},"data-dir":"/data","database":{"dsn":"file:/data/wagie.db","type":"sqlite"},"headquarters":{"http-listen-address":":8080"},"leadership":{"model":"default","name":"leadership"},"models":{"default":[{"provider":"claude-code"}]},"web":{"http-listen-address":":8080"},"worker":{"model":"default","name":"worker"}}` | Wagie configuration |
+| config | object | `{"assistant":{"name":"assistant"},"data-dir":"/data","database":{"dsn":"file:/data/wagie.db","type":"sqlite"},"headquarters":{"http-listen-address":":8080"},"leadership":{"name":"leadership"},"web":{"http-listen-address":":8080"},"worker":{"name":"worker"}}` | Wagie configuration |
 | containerSecurityContext | object | See `values.yaml` | The security context for containers |
 | customArgs | list | `[]` | Custom args for the wagie container |
 | customCommand | list | `[]` | Command replacement for the wagie container |
