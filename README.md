@@ -33,6 +33,7 @@ helm search repo ethpandaops-general-helm-charts
 - [`dispatchoor-ui`](charts/dispatchoor-ui)
 - [`panda-pulse`](charts/panda-pulse)
 - [`raw-configmap`](charts/raw-configmap)
+- [`redis-commander`](charts/redis-commander)
 
 ## Development
 
