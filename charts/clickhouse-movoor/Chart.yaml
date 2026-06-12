@@ -1,0 +1,9 @@
+apiVersion: v2
+name: clickhouse-movoor
+description: A ClickHouse storage tiering operator that moves cold MergeTree partitions to colder disks
+home: https://github.com/ethpandaops/clickhouse-movoor
+type: application
+version: 0.0.1
+maintainers:
+  - name: savid
+    email: andrew.davis@ethereum.org

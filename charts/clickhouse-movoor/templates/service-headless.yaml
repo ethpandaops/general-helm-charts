@@ -1,0 +1,27 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "clickhouse-movoor.fullname" . }}-headless
+  labels:
+    {{- include "clickhouse-movoor.labels" . | nindent 4 }}
+spec:
+  clusterIP: None
+  ports:
+    - port: {{ include "clickhouse-movoor.metricsPort" . }}
+      targetPort: metrics
+      protocol: TCP
+      name: metrics
+    {{- if (include "clickhouse-movoor.probePort" .) }}
+    - port: {{ include "clickhouse-movoor.probePort" . }}
+      targetPort: probe
+      protocol: TCP
+      name: probe
+    {{- end }}
+    {{- if (include "clickhouse-movoor.frontendPort" .) }}
+    - port: {{ include "clickhouse-movoor.frontendPort" . }}
+      targetPort: frontend
+      protocol: TCP
+      name: frontend
+    {{- end }}
+  selector:
+    {{- include "clickhouse-movoor.selectorLabels" . | nindent 4 }}

@@ -1,0 +1,255 @@
+# -- Overrides the chart's name
+nameOverride: ""
+
+# -- Overrides the chart's computed fullname
+fullnameOverride: ""
+
+# -- Number of replicas. clickhouse-movoor is a singleton operator, you almost
+# certainly want to keep this at 1
+replicas: 1
+
+image:
+  # -- clickhouse-movoor container image repository
+  repository: ethpandaops/clickhouse-movoor
+  # -- clickhouse-movoor container image tag
+  tag: latest
+  # -- clickhouse-movoor container pull policy
+  pullPolicy: IfNotPresent
+
+# -- Secret env variables injected via a created secret.
+# DSNs in the config are environment-expanded, so you can keep credentials out
+# of the config, e.g. CLICKHOUSE_PASSWORD referenced as ${CLICKHOUSE_PASSWORD}
+secretEnv: {}
+
+# -- Command arguments
+args: []
+
+config:
+  # -- Logging level: debug, info, warn/warning, or error
+  logging: "info"
+  # -- Metrics server address
+  metricsAddr: ":9090"
+  # -- Health check server address
+  healthCheckAddr: ":8081"
+  clickhouse:
+    # -- Query timeout (standard Go duration)
+    queryTimeout: 30s
+    # -- Dial timeout (standard Go duration)
+    dialTimeout: 5s
+    # -- ClickHouse nodes (required). Each entry is one physical ClickHouse
+    # node, do not use comma-separated failover DSNs or load-balanced
+    # addresses here. DSNs are environment-expanded, so ${CLICKHOUSE_PASSWORD}
+    # injected via secretEnv is supported
+    # @default -- See `values.yaml`
+    nodes:
+      - name: clickhouse-0-0
+        shard: "0"
+        replica: "0"
+        dsn: "clickhouse://default:${CLICKHOUSE_PASSWORD}@clickhouse:9000/default"
+  tiering:
+    # -- Tiering mode. "off" observes only, plan computes decisions without
+    # ALTERs, enforce applies movement/optimization decisions
+    mode: plan
+    # -- Pause between reconcile cycles
+    interval: 5m
+    # -- Defaults copied into every watch that has a tier block. A watch
+    # without a tier block remains observe-only
+    # @default -- See `values.yaml`
+    defaults:
+      # ClickHouse disk name to move cold partitions onto. If omitted it
+      # silently defaults to s3_cache
+      targetDisk: cold_disk
+      # How long a partition must be free of new inserts before it is
+      # eligible for optimize/move
+      quietFor: 24h
+  # -- Tables to watch. A watch without a tier block is observe-only
+  watches: []
+  # - database: default
+  #   table: events_local
+  #   tier:
+  #     age:
+  #       basis: partitionTime
+  #       olderThan: 35d
+  frontend:
+    # -- Enable or disable the frontend UI/API service
+    enabled: true
+    # -- Address to serve the frontend on
+    addr: ":8080"
+
+ingress:
+  http:
+    # -- Ingress resource for the HTTP frontend
+    enabled: false
+    # -- Annotations for Ingress
+    annotations: {}
+      # kubernetes.io/ingress.class: nginx
+      # kubernetes.io/tls-acme: "true"
+    # -- Ingress class name
+    className: ""
+    # -- Ingress host
+    hosts:
+      - host: chart-example.local
+        paths:
+          - path: /
+            pathType: ImplementationSpecific
+    # -- Ingress TLS
+    tls: []
+    #  - secretName: chart-example-tls
+    #    hosts:
+    #      - chart-example.local
+
+# -- Custom args for the clickhouse-movoor container
+customArgs: []
+
+# -- Command replacement for the clickhouse-movoor container
+customCommand: [] # Only change this if you need to change the default command
+
+service:
+  # -- Service type
+  type: ClusterIP
+
+# -- Update strategy for the StatefulSet
+# @default -- See `values.yaml`
+updateStrategy:
+  type: RollingUpdate
+
+# -- Affinity configuration for pods
+affinity: {}
+
+# -- Image pull secrets for Docker images
+imagePullSecrets: []
+
+# -- Annotations for the StatefulSet
+annotations: {}
+
+# -- Liveness probe
+# @default -- See `values.yaml`
+livenessProbe:
+  httpGet:
+    path: /healthz
+    port: probe
+  initialDelaySeconds: 30
+  periodSeconds: 60
+
+# -- Readiness probe
+# @default -- See `values.yaml`
+readinessProbe:
+  httpGet:
+    path: /healthz
+    port: probe
+  initialDelaySeconds: 5
+  periodSeconds: 10
+
+# -- Node selector for pods
+nodeSelector: {}
+
+# -- Pod labels
+podLabels: {}
+
+# -- Pod annotations
+podAnnotations: {}
+
+# -- Extra Pod ports
+extraPodPorts: []
+
+# -- Pod priority class
+priorityClassName: null
+
+# -- Resource requests and limits
+resources: {}
+# limits:
+#   cpu: 500m
+#   memory: 2Gi
+# requests:
+#   cpu: 300m
+#   memory: 1Gi
+
+# -- The security context for pods
+# @default -- See `values.yaml`
+securityContext:
+  fsGroup: 65532
+  runAsGroup: 65532
+  runAsNonRoot: true
+  runAsUser: 65532
+
+# -- The security context for containers
+# @default -- See `values.yaml`
+containerSecurityContext:
+  readOnlyRootFilesystem: true
+  # capabilities:
+  #   drop:
+  #   - ALL
+
+serviceAccount:
+  # -- Specifies whether a service account should be created
+  create: false
+  # -- Annotations to add to the service account
+  annotations: {}
+  # -- The name of the service account to use.
+  # If not set and create is true, a name is generated using the fullname template
+  name: ""
+
+# -- Lifecycle hooks. The default image is distroless, so exec hooks like
+# /bin/sleep are not available
+lifecycle: {}
+
+# -- How long to wait until the pod is forcefully terminated
+terminationGracePeriodSeconds: 60
+
+# -- Tolerations for pods
+## ref: https://kubernetes.io/docs/concepts/configuration/taint-and-toleration/
+tolerations: []
+
+# -- Topology Spread Constraints for pods
+## ref: https://kubernetes.io/docs/concepts/scheduling-eviction/topology-spread-constraints/
+topologySpreadConstraints: []
+
+# -- Define the PodDisruptionBudget spec
+# If not set then a PodDisruptionBudget will not be created
+podDisruptionBudget: {}
+# minAvailable: 1
+# maxUnavailable: 1
+
+# -- Additional init containers
+initContainers: []
+# - name: my-init-container
+#   image: busybox:latest
+#   command: ['sh', '-c', 'echo hello']
+
+# -- Additional containers
+extraContainers: []
+
+# -- Additional volumes
+extraVolumes: []
+
+# -- Additional volume mounts
+extraVolumeMounts: []
+
+# -- Additional ports. Useful when using extraContainers
+extraPorts: []
+
+# -- Additional env variables
+extraEnv: []
+
+serviceMonitor:
+  # -- If true, a ServiceMonitor CRD is created for a prometheus operator
+  # https://github.com/coreos/prometheus-operator
+  enabled: false
+  # -- Path to scrape
+  path: /metrics
+  # -- Alternative namespace for ServiceMonitor
+  namespace: null
+  # -- Additional ServiceMonitor labels
+  labels: {}
+  # -- Additional ServiceMonitor annotations
+  annotations: {}
+  # -- ServiceMonitor scrape interval
+  interval: 15s
+  # -- ServiceMonitor scheme
+  scheme: http
+  # -- ServiceMonitor TLS configuration
+  tlsConfig: {}
+  # -- ServiceMonitor scrape timeout
+  scrapeTimeout: 30s
+  # -- ServiceMonitor relabelings
+  relabelings: []

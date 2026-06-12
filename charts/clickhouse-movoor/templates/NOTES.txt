@@ -1,0 +1,19 @@
+clickhouse-movoor has been deployed successfully!
+
+Exposed services:
+- Metrics: {{ include "clickhouse-movoor.metricsPort" . }}
+{{- if (include "clickhouse-movoor.frontendPort" .) }}
+- Frontend: {{ include "clickhouse-movoor.frontendPort" . }}
+{{- end }}
+{{- if (include "clickhouse-movoor.probePort" .) }}
+- Health check: {{ include "clickhouse-movoor.probePort" . }}
+{{- end }}
+
+{{- if contains "ClusterIP" .Values.service.type }}
+
+To access the services, use port-forwarding:
+  export POD_NAME=$(kubectl get pods --namespace {{ .Release.Namespace }} -l "app.kubernetes.io/name={{ include "clickhouse-movoor.name" . }},app.kubernetes.io/instance={{ .Release.Name }}" -o jsonpath="{.items[0].metadata.name}")
+{{- if (include "clickhouse-movoor.frontendPort" .) }}
+  kubectl --namespace {{ .Release.Namespace }} port-forward $POD_NAME {{ include "clickhouse-movoor.frontendPort" . }}:{{ include "clickhouse-movoor.frontendPort" . }}
+{{- end }}
+{{- end }}
