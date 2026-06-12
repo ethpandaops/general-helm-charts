@@ -28,6 +28,7 @@ helm search repo ethpandaops-general-helm-charts
 - [`asynqmon`](charts/asynqmon)
 - [`cbt`](charts/cbt)
 - [`chproxy`](charts/chproxy)
+- [`clickhouse-movoor`](charts/clickhouse-movoor)
 - [`cloudflare-tunnel`](charts/cloudflare-tunnel)
 - [`dispatchoor-api`](charts/dispatchoor-api)
 - [`dispatchoor-ui`](charts/dispatchoor-ui)
