@@ -1,0 +1,18 @@
+{{- if or .Values.podDisruptionBudget.minAvailable .Values.podDisruptionBudget.maxUnavailable -}}
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata:
+  name: {{ include "clickhouse-movoor.fullname" . }}
+  labels:
+    {{- include "clickhouse-movoor.labels" . | nindent 4 }}
+spec:
+  selector:
+    matchLabels:
+      {{- include "clickhouse-movoor.selectorLabels" . | nindent 6 }}
+  {{- if .Values.podDisruptionBudget.minAvailable }}
+  minAvailable: {{ .Values.podDisruptionBudget.minAvailable }}
+  {{- end  }}
+  {{- if .Values.podDisruptionBudget.maxUnavailable }}
+  maxUnavailable: {{ .Values.podDisruptionBudget.maxUnavailable }}
+  {{- end  }}
+{{- end -}}
