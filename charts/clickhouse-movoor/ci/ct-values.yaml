@@ -1,0 +1,14 @@
+# Values used by chart-testing (ct install) in CI.
+# There is no ClickHouse in the CI cluster. movoor tolerates unreachable nodes
+# (logs reachability warnings and keeps serving /healthz with HTTP 200), but
+# config validation requires at least one watch, so provide a dummy one.
+config:
+  clickhouse:
+    nodes:
+      - name: ci-smoke-test
+        shard: "0"
+        replica: "0"
+        dsn: "clickhouse://default@clickhouse:9000/default"
+  watches:
+    - database: default
+      table: ci_smoke_test
