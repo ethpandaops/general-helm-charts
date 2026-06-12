@@ -107,6 +107,21 @@ entries:
     urls:
     - https://github.com/ethpandaops/general-helm-charts/releases/download/chproxy-0.0.1/chproxy-0.0.1.tgz
     version: 0.0.1
+  clickhouse-movoor:
+  - apiVersion: v2
+    created: "2026-06-12T04:28:47.742995538Z"
+    description: A ClickHouse storage tiering operator that moves cold MergeTree partitions
+      to colder disks
+    digest: f250f086fc6a0fa437f293719feec497f2fb74def3866c4fa80ac739b8583ee4
+    home: https://github.com/ethpandaops/clickhouse-movoor
+    maintainers:
+    - email: andrew.davis@ethereum.org
+      name: savid
+    name: clickhouse-movoor
+    type: application
+    urls:
+    - https://github.com/ethpandaops/general-helm-charts/releases/download/clickhouse-movoor-0.0.1/clickhouse-movoor-0.0.1.tgz
+    version: 0.0.1
   cloudflare-tunnel:
   - apiVersion: v2
     created: "2023-11-23T01:50:22.576136755Z"
@@ -379,4 +394,4 @@ entries:
     urls:
     - https://github.com/ethpandaops/general-helm-charts/releases/download/wagie-0.1.0/wagie-0.1.0.tgz
     version: 0.1.0
-generated: "2026-04-29T02:16:38.166492182Z"
+generated: "2026-06-12T04:28:47.743034126Z"
