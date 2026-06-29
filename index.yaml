@@ -344,6 +344,23 @@ entries:
     version: 0.1.0
   wagie:
   - apiVersion: v2
+    created: "2026-06-29T05:53:36.662330566Z"
+    description: A modular project orchestration platform
+    digest: 91cd2b00efe7ad17d8d29bca30f6390c35f16af5ae51de2adb4b2a980b5bf6df
+    home: https://github.com/ethpandaops/wagie
+    maintainers:
+    - email: sam.calder-mason@ethereum.org
+      name: samcm
+    - email: andrew.davis@ethereum.org
+      name: savid
+    - email: matt.evans@ethereum.org
+      name: mattevans
+    name: wagie
+    type: application
+    urls:
+    - https://github.com/ethpandaops/general-helm-charts/releases/download/wagie-0.4.0/wagie-0.4.0.tgz
+    version: 0.4.0
+  - apiVersion: v2
     created: "2026-04-29T02:16:38.166445083Z"
     description: A modular project orchestration platform
     digest: e11c7a7e806575e0d868c209e35ef1813d32a4f7faf01f600b78bda8764ef2b5
@@ -394,4 +411,4 @@ entries:
     urls:
     - https://github.com/ethpandaops/general-helm-charts/releases/download/wagie-0.1.0/wagie-0.1.0.tgz
     version: 0.1.0
-generated: "2026-06-12T04:28:47.743034126Z"
+generated: "2026-06-29T05:53:36.66238653Z"
