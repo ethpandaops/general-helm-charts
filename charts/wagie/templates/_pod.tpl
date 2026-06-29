@@ -45,6 +45,7 @@ spec:
       {{- else }}
       command:
         - /usr/local/bin/wagie
+        - run
         - --target
         - {{ .Values.target }}
         - --config

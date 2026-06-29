@@ -2,22 +2,19 @@ target: all
 
 config:
   data-dir: /data
-
   database:
     type: sqlite
     dsn: "file:/data/wagie.db"
-
+  agents:
+    noop:
+      type: noop
   headquarters:
+    name: ci
     http-listen-address: ":8080"
-
+    public-url: "http://localhost:8080"
+    auth:
+      jwt-secret: ci-test-secret
   worker:
-    name: "worker"
-
-  leadership:
-    name: "leadership"
-
-  assistant:
-    name: "assistant"
-
-  web:
-    http-listen-address: ":8080"
+    name: ci-worker
+    agents: [noop]
+    max-concurrent: 1
