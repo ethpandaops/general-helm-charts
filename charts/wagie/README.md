@@ -1,6 +1,6 @@
 # wagie
 
-![Version: 0.3.0](https://img.shields.io/badge/Version-0.3.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square)
+![Version: 0.4.0](https://img.shields.io/badge/Version-0.4.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square)
 
 A modular project orchestration platform
 
@@ -13,7 +13,7 @@ A modular project orchestration platform
 | affinity | object | `{}` | Affinity configuration for pods |
 | annotations | object | `{}` | Annotations for the Deployment |
 | args | list | `[]` | Command arguments |
-| config | object | `{"assistant":{"name":"assistant"},"data-dir":"/data","database":{"dsn":"file:/data/wagie.db","type":"sqlite"},"headquarters":{"http-listen-address":":8080"},"leadership":{"name":"leadership"},"web":{"http-listen-address":":8080"},"worker":{"name":"worker"}}` | Wagie configuration |
+| config | object | `{"data-dir":"/data"}` | Wagie config (/config/config.yaml). Only data-dir set by default; supply the rest per deployment. |
 | containerSecurityContext | object | See `values.yaml` | The security context for containers |
 | customArgs | list | `[]` | Custom args for the wagie container |
 | customCommand | list | `[]` | Command replacement for the wagie container |
@@ -34,18 +34,21 @@ A modular project orchestration platform
 | ingress.hosts[0].paths | list | `[]` |  |
 | ingress.tls | list | `[]` | Ingress TLS |
 | initContainers | list | `[]` | Additional init containers |
+| kind | string | `"Deployment"` | Workload controller kind: Deployment (default) or StatefulSet |
 | livenessProbe | object | See `values.yaml` | Liveness probe |
 | nameOverride | string | `""` | Overrides the chart's name |
 | nodeSelector | object | `{}` | Node selector for pods |
+| persistentVolumeClaimRetentionPolicy | object | `{}` | StatefulSet only: PVC retention policy (whenScaled/whenDeleted). Empty = default Retain/Retain. |
 | podAnnotations | object | `{}` | Pod annotations |
-| podDisruptionBudget | object | `{}` | Define the PodDisruptionBudget spec If not set then a PodDisruptionBudget will not be created |
 | podLabels | object | `{}` | Pod labels |
+| podManagementPolicy | string | `"OrderedReady"` | StatefulSet only: pod management policy (OrderedReady or Parallel) |
 | priorityClassName | string | `nil` | Pod priority class |
 | readinessProbe | object | See `values.yaml` | Readiness probe |
-| replicas | int | `1` | Number of replicas |
+| replicas | int | `1` | Replicas. Set null to omit the field so an HPA/KEDA owns the count. |
 | resources | object | `{}` | Resource requests and limits |
 | secretEnv | object | `{}` | Secret env variables injected via a created secret |
 | securityContext | object | See `values.yaml` | The security context for pods |
+| service.enabled | bool | `true` | Create a Service. Set false for outbound-only workers (no inbound ports). |
 | service.type | string | `"ClusterIP"` | Service type |
 | serviceAccount.annotations | object | `{}` | Annotations to add to the service account |
 | serviceAccount.create | bool | `false` | Specifies whether a service account should be created |
@@ -60,7 +63,10 @@ A modular project orchestration platform
 | serviceMonitor.scheme | string | `"http"` | ServiceMonitor scheme |
 | serviceMonitor.scrapeTimeout | string | `"30s"` | ServiceMonitor scrape timeout |
 | serviceMonitor.tlsConfig | object | `{}` | ServiceMonitor TLS configuration |
+| serviceName | string | `""` | StatefulSet only: governing service name (defaults to the chart fullname) |
 | target | string | all | Wagie target modules to run (comma-separated) |
 | terminationGracePeriodSeconds | int | `30` | How long to wait until the pod is forcefully terminated |
 | tolerations | list | `[]` | Tolerations for pods |
 | topologySpreadConstraints | list | `[]` | Topology Spread Constraints for pods |
+| updateStrategy | object | `{}` | StatefulSet only: update strategy |
+| volumeClaimTemplates | list | `[]` | StatefulSet only: PVC templates. A `data` template backs /data and persists per ordinal. |

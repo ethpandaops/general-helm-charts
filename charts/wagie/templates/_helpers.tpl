@@ -62,6 +62,6 @@ Create the name of the service account to use
 {{- end }}
 
 {{- define "wagie.httpPort" -}}
-{{- $addr := index .Values.config.headquarters "http-listen-address" | default ":8080" -}}
-{{ (split ":" $addr)._1 }}
+{{- $addr := dig "headquarters" "http-listen-address" ":8080" .Values.config -}}
+{{- $addr | splitList ":" | last -}}
 {{- end }}

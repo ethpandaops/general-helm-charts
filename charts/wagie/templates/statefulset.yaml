@@ -1,0 +1,35 @@
+{{- if eq (.Values.kind | default "Deployment") "StatefulSet" }}
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: {{ include "wagie.fullname" . }}
+  labels:
+    {{- include "wagie.labels" . | nindent 4 }}
+  {{- with .Values.annotations }}
+  annotations:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+spec:
+  {{- if not (kindIs "invalid" .Values.replicas) }}
+  replicas: {{ .Values.replicas }}
+  {{- end }}
+  serviceName: {{ .Values.serviceName | default (printf "%s-headless" (include "wagie.fullname" .)) }}
+  podManagementPolicy: {{ .Values.podManagementPolicy | default "OrderedReady" }}
+  {{- with .Values.updateStrategy }}
+  updateStrategy:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+  selector:
+    matchLabels:
+      {{- include "wagie.selectorLabels" . | nindent 6 }}
+  template:
+    {{- include "wagie.podSpec" . | nindent 4 }}
+  {{- with .Values.persistentVolumeClaimRetentionPolicy }}
+  persistentVolumeClaimRetentionPolicy:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+  {{- with .Values.volumeClaimTemplates }}
+  volumeClaimTemplates:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+{{- end }}

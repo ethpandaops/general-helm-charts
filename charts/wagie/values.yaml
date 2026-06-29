@@ -4,8 +4,26 @@ nameOverride: ""
 # -- Overrides the chart's computed fullname
 fullnameOverride: ""
 
-# -- Number of replicas
+# -- Replicas. Set null to omit the field so an HPA/KEDA owns the count.
 replicas: 1
+
+# -- Workload controller kind: Deployment (default) or StatefulSet
+kind: Deployment
+
+# -- StatefulSet only: PVC templates. A `data` template backs /data and persists per ordinal.
+volumeClaimTemplates: []
+
+# -- StatefulSet only: pod management policy (OrderedReady or Parallel)
+podManagementPolicy: OrderedReady
+
+# -- StatefulSet only: governing service name (defaults to the chart fullname)
+serviceName: ""
+
+# -- StatefulSet only: update strategy
+updateStrategy: {}
+
+# -- StatefulSet only: PVC retention policy (whenScaled/whenDeleted). Empty = default Retain/Retain.
+persistentVolumeClaimRetentionPolicy: {}
 
 image:
   # -- wagie container image repository
@@ -25,28 +43,9 @@ args: []
 # @default -- all
 target: all
 
-# -- Wagie configuration
+# -- Wagie config (/config/config.yaml). Only data-dir set by default; supply the rest per deployment.
 config:
   data-dir: /data
-
-  database:
-    type: sqlite
-    dsn: "file:/data/wagie.db"
-
-  headquarters:
-    http-listen-address: ":8080"
-
-  worker:
-    name: "worker"
-
-  leadership:
-    name: "leadership"
-
-  assistant:
-    name: "assistant"
-
-  web:
-    http-listen-address: ":8080"
 
 ingress:
   # -- Ingress resource for the HTTP API
@@ -72,6 +71,8 @@ customArgs: []
 customCommand: [] # Only change this if you need to change the default command
 
 service:
+  # -- Create a Service. Set false for outbound-only workers (no inbound ports).
+  enabled: true
   # -- Service type
   type: ClusterIP
 
@@ -161,12 +162,6 @@ tolerations: []
 # -- Topology Spread Constraints for pods
 ## ref: https://kubernetes.io/docs/concepts/scheduling-eviction/topology-spread-constraints/
 topologySpreadConstraints: []
-
-# -- Define the PodDisruptionBudget spec
-# If not set then a PodDisruptionBudget will not be created
-podDisruptionBudget: {}
-# minAvailable: 1
-# maxUnavailable: 1
 
 # -- Additional init containers
 initContainers: []
