@@ -41,34 +41,37 @@ spec:
             - name: GITHUB_TOKEN
               valueFrom:
                 secretKeyRef:
-                  name: {{ include "panda-pulse.fullname" . }}
+                  name: {{ include "panda-pulse.secretName" . }}
                   key: github-token
             - name: GRAFANA_SERVICE_TOKEN
               valueFrom:
                 secretKeyRef:
-                  name: {{ include "panda-pulse.fullname" . }}
+                  name: {{ include "panda-pulse.secretName" . }}
                   key: grafana-service-token
             - name: DISCORD_BOT_TOKEN
               valueFrom:
                 secretKeyRef:
-                  name: {{ include "panda-pulse.fullname" . }}
+                  name: {{ include "panda-pulse.secretName" . }}
                   key: discord-bot-token
-            {{- if .Values.secrets.discordGuildIds }}
+            {{- if or .Values.existingSecret .Values.secrets.discordGuildIds }}
             - name: DISCORD_GUILD_IDS
               valueFrom:
                 secretKeyRef:
-                  name: {{ include "panda-pulse.fullname" . }}
+                  name: {{ include "panda-pulse.secretName" . }}
                   key: discord-guild-ids
+                  {{- if .Values.existingSecret }}
+                  optional: true
+                  {{- end }}
             {{- end }}
             - name: AWS_ACCESS_KEY_ID
               valueFrom:
                 secretKeyRef:
-                  name: {{ include "panda-pulse.fullname" . }}
+                  name: {{ include "panda-pulse.secretName" . }}
                   key: aws-access-key-id
             - name: AWS_SECRET_ACCESS_KEY
               valueFrom:
                 secretKeyRef:
-                  name: {{ include "panda-pulse.fullname" . }}
+                  name: {{ include "panda-pulse.secretName" . }}
                   key: aws-secret-access-key
             - name: S3_BUCKET
               value: {{ required "A valid S3 bucket is required in config.s3.bucket" .Values.config.s3.bucket }}
