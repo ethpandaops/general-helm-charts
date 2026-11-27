@@ -12,7 +12,7 @@ Creation of a cloudflared deployment - a reverse tunnel for an environment
 | args | list | `[]` |  |
 | cloudflare.account | string | `""` |  |
 | cloudflare.enableWarp | bool | `false` |  |
-| cloudflare.existingSecret | string | `""` |  |
+| cloudflare.existingSecret | string | `""` | Name of an existing Secret holding the tunnel credentials in a `credentials.json` key; when set, the chart creates no Secret. |
 | cloudflare.ingress | list | `[]` |  |
 | cloudflare.secret | string | `""` |  |
 | cloudflare.tunnelId | string | `""` |  |
