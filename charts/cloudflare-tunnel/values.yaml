@@ -33,6 +33,17 @@ image:
 
 replicaCount: 2
 
+# -- Minimum seconds a new pod must stay Ready before the Deployment counts it as available. 0 leaves it unset.
+minReadySeconds: 0
+
+# -- Readiness probe for the cloudflared container. `/ready` returns 200 only while cloudflared has an active connection to the Cloudflare edge.
+readinessProbe:
+  httpGet:
+    path: /ready
+    port: 2000
+  periodSeconds: 2
+  failureThreshold: 1
+
 imagePullSecrets: []
 nameOverride: ""
 fullnameOverride: ""
