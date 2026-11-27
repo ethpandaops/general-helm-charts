@@ -10,6 +10,8 @@ cloudflare:
   tunnelId: ""
   # The secret for the tunnel.
   secret: ""
+  # -- Name of an existing Secret holding the tunnel credentials in a `credentials.json` key; when set, the chart creates no Secret.
+  existingSecret: ""
   # If true, turn on WARP routing for TCP
   enableWarp: false
   # Define ingress rules for the tunnel. See
