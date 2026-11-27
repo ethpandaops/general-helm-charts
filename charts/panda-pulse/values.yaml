@@ -17,8 +17,12 @@ config:
     bucketPrefix: ""  # optional, defaults to "ethrand"
     region: "ams3"  # optional, defaults to ams3
     endpointUrl: ""  # optional
+  # -- GitHub App ID, sets GITHUB_APP_ID. GitHub App auth needs this, `config.githubAppInstallationId` and `secrets.githubAppPrivateKey`, and is used only when no GitHub token is set.
+  githubAppId: ""
+  # -- GitHub App installation ID, sets GITHUB_APP_INSTALLATION_ID.
+  githubAppInstallationId: ""
 
-# -- Name of an existing Secret holding the keys github-token, grafana-service-token, discord-bot-token, discord-guild-ids (optional), aws-access-key-id and aws-secret-access-key; when set, the chart creates no Secret and ignores `secrets`.
+# -- Name of an existing Secret holding the keys grafana-service-token, discord-bot-token, discord-guild-ids (optional), aws-access-key-id, aws-secret-access-key, github-token (optional) and github-app-private-key (optional); when set, the chart creates no Secret and ignores `secrets`.
 existingSecret: ""
 
 secrets:
@@ -27,7 +31,10 @@ secrets:
   discordGuildIds: ""  # optional, comma-separated guild IDs for guild-scoped command registration
   s3AccessKeyId: "YOUR_S3_ACCESS_KEY_ID"  # required
   s3SecretAccessKey: "YOUR_S3_SECRET_ACCESS_KEY"  # required
-  githubToken: "YOUR_GITHUB_TOKEN" # required
+  # -- GitHub token, sets GITHUB_TOKEN. Required unless GitHub App auth is configured; leave empty to use the GitHub App.
+  githubToken: ""
+  # -- GitHub App private key (PEM), sets GITHUB_APP_PRIVATE_KEY.
+  githubAppPrivateKey: ""
 
 resources:
   limits:

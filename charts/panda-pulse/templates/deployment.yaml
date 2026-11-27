@@ -38,11 +38,34 @@ spec:
               protocol: {{ .protocol }}
             {{- end }}
           env:
+            {{- if or .Values.existingSecret .Values.secrets.githubToken }}
             - name: GITHUB_TOKEN
               valueFrom:
                 secretKeyRef:
                   name: {{ include "panda-pulse.secretName" . }}
                   key: github-token
+                  {{- if .Values.existingSecret }}
+                  optional: true
+                  {{- end }}
+            {{- end }}
+            {{- if or .Values.existingSecret .Values.secrets.githubAppPrivateKey }}
+            - name: GITHUB_APP_PRIVATE_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: {{ include "panda-pulse.secretName" . }}
+                  key: github-app-private-key
+                  {{- if .Values.existingSecret }}
+                  optional: true
+                  {{- end }}
+            {{- end }}
+            {{- if .Values.config.githubAppId }}
+            - name: GITHUB_APP_ID
+              value: {{ ternary .Values.config.githubAppId (int64 .Values.config.githubAppId) (kindIs "string" .Values.config.githubAppId) | toString | quote }}
+            {{- end }}
+            {{- if .Values.config.githubAppInstallationId }}
+            - name: GITHUB_APP_INSTALLATION_ID
+              value: {{ ternary .Values.config.githubAppInstallationId (int64 .Values.config.githubAppInstallationId) (kindIs "string" .Values.config.githubAppInstallationId) | toString | quote }}
+            {{- end }}
             - name: GRAFANA_SERVICE_TOKEN
               valueFrom:
                 secretKeyRef:

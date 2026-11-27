@@ -1,0 +1,5 @@
+config:
+  githubAppId: "123456"
+  githubAppInstallationId: "12345678"
+secrets:
+  githubAppPrivateKey: "YOUR_GITHUB_APP_PRIVATE_KEY"
