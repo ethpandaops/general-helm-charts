@@ -1,6 +1,6 @@
 # panda-pulse
 
-![Version: 1.0.7](https://img.shields.io/badge/Version-1.0.7-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: latest](https://img.shields.io/badge/AppVersion-latest-informational?style=flat-square)
+![Version: 1.1.0](https://img.shields.io/badge/Version-1.1.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: latest](https://img.shields.io/badge/AppVersion-latest-informational?style=flat-square)
 
 A Helm chart for Panda Pulse - Ethereum network monitoring and reporting tool
 
@@ -15,6 +15,8 @@ A Helm chart for Panda Pulse - Ethereum network monitoring and reporting tool
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
 | affinity | object | `{}` |  |
+| config.githubAppId | string | `""` | GitHub App ID, sets GITHUB_APP_ID. GitHub App auth needs this, `config.githubAppInstallationId` and `secrets.githubAppPrivateKey`, and is used only when no GitHub token is set. |
+| config.githubAppInstallationId | string | `""` | GitHub App installation ID, sets GITHUB_APP_INSTALLATION_ID. |
 | config.grafanaBaseUrl | string | `""` |  |
 | config.healthCheckAddress | string | `""` |  |
 | config.metricsAddress | string | `""` |  |
@@ -23,7 +25,7 @@ A Helm chart for Panda Pulse - Ethereum network monitoring and reporting tool
 | config.s3.bucketPrefix | string | `""` |  |
 | config.s3.endpointUrl | string | `""` |  |
 | config.s3.region | string | `"ams3"` |  |
-| existingSecret | string | `""` | Name of an existing Secret holding the keys github-token, grafana-service-token, discord-bot-token, discord-guild-ids (optional), aws-access-key-id and aws-secret-access-key; when set, the chart creates no Secret and ignores `secrets`. |
+| existingSecret | string | `""` | Name of an existing Secret holding the keys grafana-service-token, discord-bot-token, discord-guild-ids (optional), aws-access-key-id, aws-secret-access-key, github-token (optional) and github-app-private-key (optional); when set, the chart creates no Secret and ignores `secrets`. |
 | fullnameOverride | string | `""` |  |
 | image.pullPolicy | string | `"IfNotPresent"` |  |
 | image.repository | string | `"ethpandaops/panda-pulse"` |  |
@@ -57,7 +59,8 @@ A Helm chart for Panda Pulse - Ethereum network monitoring and reporting tool
 | resources.requests.memory | string | `"128Mi"` |  |
 | secrets.discordBotToken | string | `"YOUR_DISCORD_BOT_TOKEN"` |  |
 | secrets.discordGuildIds | string | `""` |  |
-| secrets.githubToken | string | `"YOUR_GITHUB_TOKEN"` |  |
+| secrets.githubAppPrivateKey | string | `""` | GitHub App private key (PEM), sets GITHUB_APP_PRIVATE_KEY. |
+| secrets.githubToken | string | `""` | GitHub token, sets GITHUB_TOKEN. Required unless GitHub App auth is configured; leave empty to use the GitHub App. |
 | secrets.grafanaServiceToken | string | `"YOUR_GRAFANA_SERVICE_TOKEN"` |  |
 | secrets.s3AccessKeyId | string | `"YOUR_S3_ACCESS_KEY_ID"` |  |
 | secrets.s3SecretAccessKey | string | `"YOUR_S3_SECRET_ACCESS_KEY"` |  |
