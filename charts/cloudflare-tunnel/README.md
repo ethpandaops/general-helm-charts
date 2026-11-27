@@ -1,6 +1,6 @@
 # cloudflare-tunnel
 
-![Version: 0.3.0](https://img.shields.io/badge/Version-0.3.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square)
+![Version: 0.4.0](https://img.shields.io/badge/Version-0.4.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square)
 
 Creation of a cloudflared deployment - a reverse tunnel for an environment
 
@@ -22,12 +22,14 @@ Creation of a cloudflared deployment - a reverse tunnel for an environment
 | image.repository | string | `"cloudflare/cloudflared"` |  |
 | image.tag | string | `"latest"` |  |
 | imagePullSecrets | list | `[]` |  |
+| minReadySeconds | int | `0` | Minimum seconds a new pod must stay Ready before the Deployment counts it as available. 0 leaves it unset. |
 | nameOverride | string | `""` |  |
 | nodeSelector | object | `{}` |  |
 | podAnnotations | object | `{}` |  |
 | podDisruptionBudget | object | `{"minAvailable":1}` | Define the PodDisruptionBudget spec If not set then a PodDisruptionBudget will not be created |
 | podSecurityContext.runAsNonRoot | bool | `true` |  |
 | podSecurityContext.runAsUser | int | `65532` |  |
+| readinessProbe | object | `{"failureThreshold":1,"httpGet":{"path":"/ready","port":2000},"periodSeconds":2}` | Readiness probe for the cloudflared container. `/ready` returns 200 only while cloudflared has an active connection to the Cloudflare edge. |
 | replicaCount | int | `2` |  |
 | resources | object | `{}` |  |
 | securityContext.allowPrivilegeEscalation | bool | `false` |  |
