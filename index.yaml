@@ -137,6 +137,19 @@ entries:
     version: 0.0.1
   cloudflare-tunnel:
   - apiVersion: v2
+    created: "2026-11-27T01:29:47.204497425Z"
+    description: Creation of a cloudflared deployment - a reverse tunnel for an environment
+    digest: 549d8b690b014aad132821e74c3863b22ee045459ad98516adfa31cd4bf2b766
+    icon: https://developers.cloudflare.com/cloudflare-one/favicon-32x32.png
+    maintainers:
+    - email: busa.barnabas@gmail.com
+      name: barnabasbusa
+    name: cloudflare-tunnel
+    type: application
+    urls:
+    - https://github.com/ethpandaops/general-helm-charts/releases/download/cloudflare-tunnel-0.3.0/cloudflare-tunnel-0.3.0.tgz
+    version: 0.3.0
+  - apiVersion: v2
     created: "2023-11-23T01:50:22.576136755Z"
     description: Creation of a cloudflared deployment - a reverse tunnel for an environment
     digest: 4823b5c31a0ea17ac64e3b4586ad2bb8291b618ae0dcd4a6b23f540504bfae5b
@@ -369,4 +382,4 @@ entries:
     urls:
     - https://github.com/ethpandaops/general-helm-charts/releases/download/raw-configmap-0.1.0/raw-configmap-0.1.0.tgz
     version: 0.1.0
-generated: "2026-11-27T01:29:34.75940201Z"
+generated: "2026-11-27T01:29:47.204538934Z"
