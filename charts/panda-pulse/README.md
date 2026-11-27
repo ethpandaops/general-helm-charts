@@ -1,6 +1,6 @@
 # panda-pulse
 
-![Version: 1.0.6](https://img.shields.io/badge/Version-1.0.6-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: latest](https://img.shields.io/badge/AppVersion-latest-informational?style=flat-square)
+![Version: 1.0.7](https://img.shields.io/badge/Version-1.0.7-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: latest](https://img.shields.io/badge/AppVersion-latest-informational?style=flat-square)
 
 A Helm chart for Panda Pulse - Ethereum network monitoring and reporting tool
 
@@ -23,6 +23,7 @@ A Helm chart for Panda Pulse - Ethereum network monitoring and reporting tool
 | config.s3.bucketPrefix | string | `""` |  |
 | config.s3.endpointUrl | string | `""` |  |
 | config.s3.region | string | `"ams3"` |  |
+| existingSecret | string | `""` |  |
 | fullnameOverride | string | `""` |  |
 | image.pullPolicy | string | `"IfNotPresent"` |  |
 | image.repository | string | `"ethpandaops/panda-pulse"` |  |

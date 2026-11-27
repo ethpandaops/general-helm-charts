@@ -18,6 +18,8 @@ config:
     region: "ams3"  # optional, defaults to ams3
     endpointUrl: ""  # optional
 
+existingSecret: ""
+
 secrets:
   grafanaServiceToken: "YOUR_GRAFANA_SERVICE_TOKEN"  # required
   discordBotToken: "YOUR_DISCORD_BOT_TOKEN"  # required
