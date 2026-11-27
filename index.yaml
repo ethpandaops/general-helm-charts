@@ -285,6 +285,20 @@ entries:
   panda-pulse:
   - apiVersion: v2
     appVersion: latest
+    created: "2026-11-27T01:34:39.965025063Z"
+    description: A Helm chart for Panda Pulse - Ethereum network monitoring and reporting
+      tool
+    digest: 09ac1723b5aab29559ace02092691734970b9b7151a613abcea8a3dd8e3556a4
+    maintainers:
+    - email: matt.evans@ethereum.org
+      name: matty
+    name: panda-pulse
+    type: application
+    urls:
+    - https://github.com/ethpandaops/general-helm-charts/releases/download/panda-pulse-1.0.7/panda-pulse-1.0.7.tgz
+    version: 1.0.7
+  - apiVersion: v2
+    appVersion: latest
     created: "2026-09-16T01:01:48.828561968Z"
     description: A Helm chart for Panda Pulse - Ethereum network monitoring and reporting
       tool
@@ -422,4 +436,4 @@ entries:
     urls:
     - https://github.com/ethpandaops/general-helm-charts/releases/download/raw-configmap-0.1.0/raw-configmap-0.1.0.tgz
     version: 0.1.0
-generated: "2026-11-27T01:30:46.642849515Z"
+generated: "2026-11-27T01:34:39.965066545Z"
