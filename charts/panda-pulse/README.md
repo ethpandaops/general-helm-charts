@@ -23,7 +23,7 @@ A Helm chart for Panda Pulse - Ethereum network monitoring and reporting tool
 | config.s3.bucketPrefix | string | `""` |  |
 | config.s3.endpointUrl | string | `""` |  |
 | config.s3.region | string | `"ams3"` |  |
-| existingSecret | string | `""` |  |
+| existingSecret | string | `""` | Name of an existing Secret holding the keys github-token, grafana-service-token, discord-bot-token, discord-guild-ids (optional), aws-access-key-id and aws-secret-access-key; when set, the chart creates no Secret and ignores `secrets`. |
 | fullnameOverride | string | `""` |  |
 | image.pullPolicy | string | `"IfNotPresent"` |  |
 | image.repository | string | `"ethpandaops/panda-pulse"` |  |

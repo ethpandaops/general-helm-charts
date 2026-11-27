@@ -18,6 +18,7 @@ config:
     region: "ams3"  # optional, defaults to ams3
     endpointUrl: ""  # optional
 
+# -- Name of an existing Secret holding the keys github-token, grafana-service-token, discord-bot-token, discord-guild-ids (optional), aws-access-key-id and aws-secret-access-key; when set, the chart creates no Secret and ignores `secrets`.
 existingSecret: ""
 
 secrets:
