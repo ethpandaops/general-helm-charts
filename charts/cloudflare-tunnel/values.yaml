@@ -44,6 +44,9 @@ readinessProbe:
   periodSeconds: 2
   failureThreshold: 1
 
+# -- Init containers to add to the pod, rendered as given. They run before cloudflared starts.
+initContainers: []
+
 imagePullSecrets: []
 nameOverride: ""
 fullnameOverride: ""

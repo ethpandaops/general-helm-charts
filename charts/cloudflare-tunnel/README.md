@@ -1,6 +1,6 @@
 # cloudflare-tunnel
 
-![Version: 0.4.0](https://img.shields.io/badge/Version-0.4.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square)
+![Version: 0.5.0](https://img.shields.io/badge/Version-0.5.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square)
 
 Creation of a cloudflared deployment - a reverse tunnel for an environment
 
@@ -22,6 +22,7 @@ Creation of a cloudflared deployment - a reverse tunnel for an environment
 | image.repository | string | `"cloudflare/cloudflared"` |  |
 | image.tag | string | `"latest"` |  |
 | imagePullSecrets | list | `[]` |  |
+| initContainers | list | `[]` | Init containers to add to the pod, rendered as given. They run before cloudflared starts. |
 | minReadySeconds | int | `0` | Minimum seconds a new pod must stay Ready before the Deployment counts it as available. 0 leaves it unset. |
 | nameOverride | string | `""` |  |
 | nodeSelector | object | `{}` |  |
